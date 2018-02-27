@@ -2,5 +2,9 @@
     <Label class="action-bar-title" text="Home"></Label>
 </ActionBar>
 
-<GridLayout class="page">
-</GridLayout>
+<StackLayout>
+    <Button text="Login"
+                        [nsRouterLink]="['/login']"></Button>
+    <Button text="Sign up" [nsRouterLink]="['/register']"></Button>
+    
+    </StackLayout>
