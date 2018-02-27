@@ -2,5 +2,10 @@
     <Label class="action-bar-title" text="Home"></Label>
 </ActionBar>
 
-<GridLayout class="page">
-</GridLayout>
+<StackLayout>
+    <TextView class="h6"
+    [text]="data"></TextView>
+
+    <Button class="btn btn-primary btn-active" id="button" text="Tap me!" (tap)="check()"></Button>
+</StackLayout>
+  
