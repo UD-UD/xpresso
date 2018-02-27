@@ -4,7 +4,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { FireBaseDbService } from "./fire-base-db.service"
+import { FireBaseDbService } from "./services/fire-base-db.service"
 
 @NgModule({
     bootstrap: [
