@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 const firebase = require("nativescript-plugin-firebase");
-
+const firebaseWebApi = require("nativescript-plugin-firebase/app");
 @Injectable()
 export class FireBaseDbService {
-db :any;
+
   constructor() { 
+    this.initfirebase();  
   }
 
   initfirebase(){
@@ -32,4 +33,31 @@ db :any;
     );
   }
 
+  loginUser(user){
+    firebase.login(
+      {
+        type: firebase.LoginType.PASSWORD,
+        passwordOptions: {
+          email: user.email,
+          password: user.password
+        }
+      })
+      .then(result => JSON.stringify(result))
+      .catch(error => console.log(error));
+  }
+
+  getCurrentUser(){
+    firebase.getCurrentUser()
+    .then(user =>{
+      console.log("User uid: " + user.uid)
+      return user;
+    })
+    .catch(error => console.log("Trouble in paradise: " + error));
+  }
+
+  logout(){
+    firebaseWebApi.auth().signOut()
+    .then(() => console.log("Logout OK"))
+    .catch(error => "Logout error: " + JSON.stringify(error));
+  }
 }
