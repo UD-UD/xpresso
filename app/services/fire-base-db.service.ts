@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-const firebase = require("nativescript-plugin-firebase/app");
+const firebase = require("nativescript-plugin-firebase");
 
 @Injectable()
 export class FireBaseDbService {
@@ -9,17 +9,27 @@ db :any;
   }
 
   initfirebase(){
-    //firebase.init({});
-    //this.db = firebase.firestore();
-    /*alert({
-      title : "hello",
-      message :"Ujjal"
-
+    firebase.init({}).then(()=>{
+      console.log('FireBase Initialized');
     });
-    /*this.db.collection("users").get().then((querySnapshot) => {
-       querySnapshot.forEach((doc) => {
-           console.log(`${doc.id} => ${doc.data()}`);
-       });
-     })*/
    }
+
+  getData(ref : string){
+    firebase.getValue(ref)
+    .then(result => console.log(JSON.stringify(result)))
+    .catch(error =>console.log(JSON.stringify(error)));
+  }
+
+  registerUser(user){
+    console.log(JSON.stringify(user));
+    firebase.createUser(user).then(
+        function (result) {
+          console.log(JSON.stringify(result));
+        },
+        function (errorMessage) {
+          console.log(JSON.stringify(errorMessage));
+        }
+    );
+  }
+
 }

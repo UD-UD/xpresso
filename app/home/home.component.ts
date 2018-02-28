@@ -18,11 +18,19 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit(): void {
-       
-       
+        this.firebase.initfirebase();  
     }
 
     check(){
-        this.firebase.initfirebase();     
+        console.log('clicked');
+
+        
+        
+        var user ={
+            email: 'duttaujjal143@gmail.com',
+            password: '1234#abcd'
+        };
+
+        this.firebase.registerUser(user);
     }
 }
