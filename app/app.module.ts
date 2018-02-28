@@ -5,6 +5,8 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
+import { FireBaseDbService } from "./services/fire-base-db.service"
+
 @NgModule({
     bootstrap: [
         AppComponent
@@ -19,6 +21,9 @@ import { AppComponent } from "./app.component";
     ],
     schemas: [
         NO_ERRORS_SCHEMA
+    ],
+    providers :[
+        FireBaseDbService
     ]
 })
 export class AppModule { }

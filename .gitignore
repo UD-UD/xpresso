@@ -139,6 +139,6 @@ typings/
 # dotenv environment variables file
 .env
 
-
+/app/App_Resources/Android/google-services.json
 
 # End of https://www.gitignore.io/api/code,node,android,nativescript
