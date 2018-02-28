@@ -5,6 +5,9 @@ import { RegisterRoutingModule } from "./register.routing";
 import { RegisterComponent } from "./register.component";
 
 @NgModule({
+    bootstrap: [
+        RegisterComponent
+    ],
     imports: [
         NativeScriptCommonModule,
         RegisterRoutingModule

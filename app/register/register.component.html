@@ -1,7 +1,11 @@
-<StackLayout>
- 
+<ScrollView orientation="vertical">
+
+<StackLayout orientation
+=
+"vertical">
+ <stackLayout>
     <Label text="First Name"></Label>
-    <TextField class="input input-border" ></TextField>
+    <TextView [text]="FName"></TextView>
 
     <Label text="Last Name"></Label>
     <TextField class="input input-border"></TextField>
@@ -13,6 +17,11 @@
     <Label text="Password"></Label>
     <TextField class="input input-border" secure="true" ></TextField>
 
-<Button text="Sign up"></Button>
+    <Label text="Phone Number"></Label>
+    <TextField class="input input-border"></TextField>
+</stackLayout>
+
+<Button text="Sign up" (tap)="signUp()"></Button>
 </StackLayout>
+</ScrollView>
  

@@ -1,13 +1,15 @@
 export class User
 {
-    name :string
+    firstName :string
+    LastName :string
     email :string
     password :string
     QRcode :string
     phno : number
-   constructor(name, email, password, QRcode, phno)
+   constructor(firstName,LastName, email, password, QRcode, phno)
    {
-       this.name = name;
+       this.firstName = firstName;
+       this.LastName = LastName;
        this.email = email;
         this.password = password;
         this.QRcode = QRcode;
