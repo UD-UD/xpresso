@@ -9,7 +9,7 @@ import { TextView } from "ui/text-view";
 })
 export class RegisterComponent implements OnInit {
   
-public Fname = "pinky"
+FName = "pinky"
   constructor() {
     
   }
@@ -19,7 +19,7 @@ public Fname = "pinky"
   signUp(): void
   {
     
-    console.log(this.Fname)
+    console.log(this.FName)
   }
    
 }

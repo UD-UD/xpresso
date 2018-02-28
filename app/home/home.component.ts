@@ -12,14 +12,9 @@ import { FireBaseDbService } from "../services/fire-base-db.service";
     templateUrl: "./home.component.html"
 })
 export class HomeComponent implements OnInit {
-<<<<<<< HEAD
-    xxx = "pink"
-    constructor() {
-=======
 
     public data ="Fb Data";
     constructor(private firebase : FireBaseDbService) {
->>>>>>> feature/integrate-firebase-db
     }
 
     ngOnInit(): void {

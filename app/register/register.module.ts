@@ -1,5 +1,6 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 import { RegisterRoutingModule } from "./register.routing";
 import { RegisterComponent } from "./register.component";
@@ -10,7 +11,9 @@ import { RegisterComponent } from "./register.component";
     ],
     imports: [
         NativeScriptCommonModule,
-        RegisterRoutingModule
+        NativeScriptFormsModule,
+        RegisterRoutingModule,
+       
     ],
     declarations: [
         RegisterComponent
