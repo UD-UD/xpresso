@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 const firebase = require("nativescript-plugin-firebase");
 const firebaseWebApi = require("nativescript-plugin-firebase/app");
+
 @Injectable()
 export class FireBaseDbService {
 
@@ -13,7 +14,7 @@ export class FireBaseDbService {
     firebase.init({}).then(()=>{
       console.log('FireBase Initialized');
     });
-   }
+  }
 
   getData(ref : string){
     firebase.getValue(ref)
