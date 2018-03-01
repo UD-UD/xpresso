@@ -3,7 +3,8 @@
 </ActionBar>
 
 <StackLayout>
+    <Image [src]="imgSource" width="300" height="300"></Image>
     <Button text="Login" [nsRouterLink]="['/login']"></Button>
     <Button text="Sign up" [nsRouterLink]="['/register']"></Button>
     <Button text="Scan" (tap)="scan()"></Button>
-    </StackLayout>
+</StackLayout>

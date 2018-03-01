@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BarcodeScanner } from 'nativescript-barcodescanner';
 import * as camera from "nativescript-camera";
+const ZXing = require('nativescript-zxing')
 
 @Injectable()
 export class QrcodeService {
 
-  
+  zingLib : any;
   constructor(private barcodeService : BarcodeScanner) { 
     camera.requestPermissions();
+    this.zingLib = new ZXing();
    }
 
   scanBarcode() {
     this.barcodeService.scan({
       formats :'QR_CODE',
       resultDisplayDuration : 500,
-      orientation : 'portrait',
+      orientation : 'landscape',
       openSettingsIfPermissionWasPreviouslyDenied : true
     }).then((result) => {
        console.log(JSON.stringify(result));
@@ -24,4 +26,18 @@ export class QrcodeService {
     );
   }
 
+/*
+userData = {
+  name : "",
+  uid  : ""
+}
+*/
+  generateBarcode(userData){
+    var img = this.zingLib.createBarcode({
+      encode: JSON.stringify(userData), 
+      height: 500, 
+      width: 500, 
+      format: ZXing.QR_CODE});
+      return img;
+  }
 }

@@ -16,6 +16,7 @@ import { QrcodeService } from "../services/qrcode.service"
 export class HomeComponent implements OnInit {
 
     public data ="Fb Data";
+    public imgSource = "";
     constructor(private firebase : FireBaseDbService,private barcodeService : QrcodeService) {
     }
 
@@ -38,5 +39,9 @@ export class HomeComponent implements OnInit {
 
     scan(){
         this.barcodeService.scanBarcode();
+        // this.imgSource = this.barcodeService.generateBarcode({
+        //     name : 'Ujjal',
+        //     uuid : '1234#abcd'
+        // });
     }
 }
