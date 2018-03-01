@@ -4,8 +4,9 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-
+import { BarcodeScanner } from 'nativescript-barcodescanner';
 import { FireBaseDbService } from "./services/fire-base-db.service"
+import { QrcodeService } from "./services/qrcode.service" 
 
 @NgModule({
     bootstrap: [
@@ -23,7 +24,9 @@ import { FireBaseDbService } from "./services/fire-base-db.service"
         NO_ERRORS_SCHEMA
     ],
     providers :[
-        FireBaseDbService
+        FireBaseDbService,
+        BarcodeScanner,
+        QrcodeService
     ]
 })
 export class AppModule { }

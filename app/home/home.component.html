@@ -3,8 +3,7 @@
 </ActionBar>
 
 <StackLayout>
-    <Button text="Login"
-                        [nsRouterLink]="['/login']"></Button>
+    <Button text="Login" [nsRouterLink]="['/login']"></Button>
     <Button text="Sign up" [nsRouterLink]="['/register']"></Button>
-
+    <Button text="Scan" (tap)="scan()"></Button>
     </StackLayout>
