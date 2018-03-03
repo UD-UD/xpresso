@@ -20,12 +20,18 @@ export class RegisterComponent implements OnInit {
 
   signUp(): void
   {
-    
-    console.log(JSON.stringify(this.user))
   this.fbservice.registerUser({
      email : this.user.email,
      password : this.user.password
-   })
+   }).then(result => {
+    this.user.email = JSON.stringify(result);
+    },
+    errorMessage => {
+      this.user.email = JSON.stringify(errorMessage);
+      //this.logs = JSON.stringify(errorMessage);
+  
+    }
+);
    
   }
    

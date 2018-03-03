@@ -27,24 +27,11 @@ export class FireBaseDbService {
     .catch(error =>console.log(JSON.stringify(error)));
   }
 
-  registerUser(user){
+  registerUser(user) : any {
     console.log(JSON.stringify(user));
-    firebase.createUser(user).then(
-        function (result) {
-          console.log(JSON.stringify(result));
-          this.logs = JSON.stringify(result)
-        //  var tip = new ToolTip({},{text: JSON.stringify(result)});
-        //  tip.show();
-        },
-        function (errorMessage) {
-          console.log(JSON.stringify(errorMessage));
-          this.logs = JSON.stringify(errorMessage);
-          
-        //  var tip = new ToolTip({},{text: JSON.stringify(errorMessage)});
-        //  tip.show();
-      
-        }
-    );
+    return firebase.createUser(user);
+    
+    
   }
 
   loginUser(user){
