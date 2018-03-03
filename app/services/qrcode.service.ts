@@ -35,8 +35,8 @@ userData = {
   generateBarcode(userData){
     var img = this.zingLib.createBarcode({
       encode: JSON.stringify(userData), 
-      height: 500, 
-      width: 500, 
+      height: 100, 
+      width: 100, 
       format: ZXing.QR_CODE});
       return img;
   }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TextView } from "ui/text-view";
+import {User} from '../model/user'
+import {FireBaseDbService} from '../services/fire-base-db.service'
 
 @Component({
   moduleId: module.id,
@@ -8,10 +10,10 @@ import { TextView } from "ui/text-view";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  public user: User;
   
-FName = "pinky"
-  constructor() {
-    
+  constructor(private fbservice : FireBaseDbService) {
+    this.user = new User()
   }
 
   ngOnInit() :void { }
@@ -19,7 +21,12 @@ FName = "pinky"
   signUp(): void
   {
     
-    console.log(this.FName)
+    console.log(JSON.stringify(this.user))
+  this.fbservice.registerUser({
+     email : this.user.email,
+     password : this.user.password
+   })
+   
   }
    
 }

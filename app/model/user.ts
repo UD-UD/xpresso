@@ -6,13 +6,5 @@ export class User
     password :string
     QRcode :string
     phno : number
-   constructor(firstName,LastName, email, password, QRcode, phno)
-   {
-       this.firstName = firstName;
-       this.LastName = LastName;
-       this.email = email;
-        this.password = password;
-        this.QRcode = QRcode;
-        this.phno = phno;
-   }
+
 }
