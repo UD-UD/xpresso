@@ -6,6 +6,7 @@ import * as dialogs from "tns-core-modules/ui/dialogs";
 
 import { FireBaseDbService } from "../services/fire-base-db.service";
 
+import { CouchbaseDbService} from "../services/couch-base-db.service"
 @Component({
     selector: "Home",
     moduleId: module.id,
@@ -14,7 +15,7 @@ import { FireBaseDbService } from "../services/fire-base-db.service";
 export class HomeComponent implements OnInit {
 
     public data ="Fb Data";
-    constructor(private firebase : FireBaseDbService) {
+    constructor(private firebase : FireBaseDbService, private couchbase : CouchbaseDbService) {
     }
 
     ngOnInit(): void {
@@ -32,5 +33,9 @@ export class HomeComponent implements OnInit {
         };
 
         this.firebase.registerUser(user);
+    }
+    couch()
+    {
+        this.couchbase.createDB();
     }
 }

@@ -5,6 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { FireBaseDbService } from "./services/fire-base-db.service"
+import {CouchbaseDbService} from "./services/couch-base-db.service"
 
 @NgModule({
     bootstrap: [
@@ -21,7 +22,8 @@ import { FireBaseDbService } from "./services/fire-base-db.service"
         NO_ERRORS_SCHEMA
     ],
     providers :[
-        FireBaseDbService
+        FireBaseDbService,
+        CouchbaseDbService
     ]
 })
 export class AppModule { }
