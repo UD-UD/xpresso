@@ -1,14 +1,14 @@
 <StackLayout>
-
-<StackLayout>
-      <Label text="Username"></Label>
-      <TextField class="input input-border"></TextField>
-</StackLayout>
-
-      <StackLayout class="input-field">
-    <Label text="Password"></Label>
-    <TextField class="input input-border" secure="true" ></TextField>
+      
+      <StackLayout>
+            <Label text="username"></Label>
+            <TextField [(ngModel)]="user.email" class="input input-border"></TextField>
       </StackLayout>
-    
-<Button text="login" class="submit-button"></Button>
+      
+      <StackLayout class="input-field">
+            <Label text="password"></Label>
+            <TextField [(ngModel)]="user.password" class="input input-border" secure="true" ></TextField>
+      </StackLayout>
+      
+      <Button text="login" (tap)="login()" class="submit-button"></Button>
 </StackLayout>

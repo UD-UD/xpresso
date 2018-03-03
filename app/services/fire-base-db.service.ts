@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { alert } from 'tns-core-modules/ui/dialogs/dialogs';
 
-
 const firebase = require("nativescript-plugin-firebase");
 const firebaseWebApi = require("nativescript-plugin-firebase/app");
-
-//import {ToolTip} from "nativescript-tooltip";
 
 @Injectable()
 export class FireBaseDbService {
@@ -30,12 +27,10 @@ export class FireBaseDbService {
   registerUser(user) : any {
     console.log(JSON.stringify(user));
     return firebase.createUser(user);
-    
-    
   }
 
-  loginUser(user){
-    firebase.login(
+  loginUser(user) : any{
+    return firebase.login(
       {
         type: firebase.LoginType.PASSWORD,
         passwordOptions: {
@@ -43,8 +38,7 @@ export class FireBaseDbService {
           password: user.password
         }
       })
-      .then(result => JSON.stringify(result))
-      .catch(error => console.log(error));
+      
   }
 
   getCurrentUser(){
