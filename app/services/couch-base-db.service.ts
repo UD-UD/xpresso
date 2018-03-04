@@ -6,27 +6,31 @@ var couchbaseModule = require("nativescript-couchbase");
 @Injectable()
 export class CouchbaseDbService {
     public database : any
-    public documentId : any
+ 
+    public documentId :any
+  //  public profile : any
     
   constructor() { 
-    
+    this.database = new couchbaseModule.Couchbase("data");
+  
   }
-  createDB() : void{
-    this.database = new couchbaseModule.Couchbase("test-database");
-   this.documentId = this.database.createDocument({
-    "firstname": "Nic",
-    "lastname": "Raboy",
-    "address": {
-        "city": "San Francisco",
-        "state": "CA",
-        "country": "USA"
-    },
-    "twitter": "https://www.twitter.com/nraboy"
-});
-console.log(this.documentId);
+  createDB(profile) : any{
+ 
+   this.documentId = this.database.createDocument(profile)
+console.log(JSON.stringify(this.documentId));
+return this.documentId;
   }
+  getDoc(docId) : any{
+  return(this.database.getDocument(docId));
+  }
+  updateDoc(docId): any {
+  return  this.database.updateDocument(this.documentId, {
+      firstname: "Nicolas",
+      lastname: "Raboy"
+     
+  });
 
-
+  }
 
 
   }
