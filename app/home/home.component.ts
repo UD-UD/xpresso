@@ -7,6 +7,7 @@ import * as dialogs from "tns-core-modules/ui/dialogs";
 import { FireBaseDbService } from "../services/fire-base-db.service";
 
 import { CouchbaseDbService} from "../services/couch-base-db.service"
+import * as user from '../user'
 
 //import { Couchbase } from "nativescript-couchbase";
 @Component({
@@ -23,11 +24,7 @@ export class HomeComponent implements OnInit {
     public documentId :any
     constructor(private firebase : FireBaseDbService, private couchbase : CouchbaseDbService) {
       //  this.database = new couchbaseModule.Couchbase("data");
-        this.profile  = {
-           
-            firstname: 'xx',
-            lastname: 'yy'
-        };
+      //this.profile = new user.user("pinky","motu")
     }
 
     ngOnInit(): void {
@@ -51,6 +48,9 @@ export class HomeComponent implements OnInit {
         this.documentId = this.couchbase.createDB(this.profile);
         this.retProfile = this.couchbase.getDoc(this.documentId);
         console.log(JSON.stringify(this.retProfile))
+        this.couchbase.updateDoc(this.documentId);
+        console.log(JSON.stringify(this.couchbase.getDoc(this.documentId)))
+        
        }
 
 }

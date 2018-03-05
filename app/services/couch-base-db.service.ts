@@ -25,8 +25,7 @@ return this.documentId;
   }
   updateDoc(docId): any {
   return  this.database.updateDocument(this.documentId, {
-      firstname: "Nicolas",
-      lastname: "Raboy"
+      firstname: "Nicolas"
      
   });
 
