@@ -10,6 +10,8 @@ import { CouchbaseDbService} from "../services/couch-base-db.service"
 import * as user from '../user'
 
 //import { Couchbase } from "nativescript-couchbase";
+import { QrcodeService } from "../services/qrcode.service"
+
 @Component({
     selector: "Home",
     moduleId: module.id,
@@ -22,7 +24,7 @@ export class HomeComponent implements OnInit {
   profile :any
   retProfile : any
     public documentId :any
-    constructor(private firebase : FireBaseDbService, private couchbase : CouchbaseDbService) {
+    constructor(private firebase : FireBaseDbService, private couchbase : CouchbaseDbService, private barcodeService : QrcodeService) {
       //  this.database = new couchbaseModule.Couchbase("data");
       //this.profile = new user.user("pinky","motu")
     }
@@ -53,4 +55,12 @@ export class HomeComponent implements OnInit {
         
        }
 
+
+    scan(){
+        this.barcodeService.scanBarcode();
+        // this.imgSource = this.barcodeService.generateBarcode({
+        //     name : 'Ujjal',
+        //     uuid : '1234#abcd'
+        // });
+    }
 }

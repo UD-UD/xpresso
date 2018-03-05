@@ -1,0 +1,28 @@
+<ScrollView orientation="vertical">
+
+<StackLayout orientation
+=
+"vertical">
+ <stackLayout>
+    <Label text="First Name"></Label>
+    <TextField required [(ngModel)]="user.firstName"></TextField>
+
+    <Label text="Last Name"></Label>
+    <TextField required [(ngModel)]="user.LastName" class="input input-border"></TextField>
+
+
+   <Label text="Email"></Label>
+   <TextField required [(ngModel)]="user.email" class="input input-border" ></TextField>
+
+    <Label text="Password"></Label>
+    <TextField required [(ngModel)]="user.password" class="input input-border" secure="true" ></TextField>
+
+    <Label text="Phone Number"></Label>
+    <TextField required [(ngModel)]="user.phno" class="input input-border"></TextField>
+</stackLayout>
+
+<Button text="Sign up" (tap)="signUp()"></Button>
+<Button text="logs" [nsRouterLink]="['/profile']"></Button>
+</StackLayout>
+</ScrollView>
+ 

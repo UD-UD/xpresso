@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
+import { alert } from 'tns-core-modules/ui/dialogs/dialogs';
+
 
 const firebase = require("nativescript-plugin-firebase");
 const firebaseWebApi = require("nativescript-plugin-firebase/app");
 
+//import {ToolTip} from "nativescript-tooltip";
+
 @Injectable()
 export class FireBaseDbService {
 
-  constructor() { 
-    this.initfirebase();  
+  public logs : any
+  constructor() {
+    this.initfirebase();
   }
 
   initfirebase(){
@@ -22,16 +27,11 @@ export class FireBaseDbService {
     .catch(error =>console.log(JSON.stringify(error)));
   }
 
-  registerUser(user){
+  registerUser(user) : any {
     console.log(JSON.stringify(user));
-    firebase.createUser(user).then(
-        function (result) {
-          console.log(JSON.stringify(result));
-        },
-        function (errorMessage) {
-          console.log(JSON.stringify(errorMessage));
-        }
-    );
+    return firebase.createUser(user);
+    
+    
   }
 
   loginUser(user){
