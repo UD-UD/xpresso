@@ -6,11 +6,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BarcodeScanner } from 'nativescript-barcodescanner';
 import { FireBaseDbService } from "./services/fire-base-db.service"
-<<<<<<< HEAD
 import {CouchbaseDbService} from "./services/couch-base-db.service"
-=======
 import { QrcodeService } from "./services/qrcode.service" 
->>>>>>> feature/login-register-implementation
 
 @NgModule({
     bootstrap: [
@@ -29,12 +26,9 @@ import { QrcodeService } from "./services/qrcode.service"
     ],
     providers :[
         FireBaseDbService,
-<<<<<<< HEAD
         CouchbaseDbService
-=======
         BarcodeScanner,
         QrcodeService
->>>>>>> feature/login-register-implementation
     ]
 })
 export class AppModule { }

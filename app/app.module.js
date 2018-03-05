@@ -7,11 +7,8 @@ var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
 var nativescript_barcodescanner_1 = require("nativescript-barcodescanner");
 var fire_base_db_service_1 = require("./services/fire-base-db.service");
-<<<<<<< HEAD
 var couch_base_db_service_1 = require("./services/couch-base-db.service");
-=======
 var qrcode_service_1 = require("./services/qrcode.service");
->>>>>>> feature/login-register-implementation
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
