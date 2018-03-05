@@ -28,6 +28,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() :void { }
 
+
+// uncomment when using restration feature
+
   /*signUp(): void
   {
   this.fbservice.registerUser({
