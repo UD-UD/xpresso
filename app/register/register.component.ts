@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TextView } from "ui/text-view";
-import { User } from '../model/user';
+import { UserData } from '../model/UserData';
 import { FireBaseDbService } from '../services/fire-base-db.service';
 import { Toasty } from 'nativescript-toasty';
 
 import {RouterExtensions} from "nativescript-angular/router";
+
+import { CouchdbService } from "../services/couchdb.service"
 
 @Component({
   moduleId: module.id,
@@ -13,19 +15,24 @@ import {RouterExtensions} from "nativescript-angular/router";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public user: User;
   
-  constructor(private fbservice : FireBaseDbService ,private routerExtensions: RouterExtensions) {
-    this.user = new User()
+  public user: UserData;
+  public password : string;
+
+  constructor(private fbservice : FireBaseDbService ,
+              private routerExtensions: RouterExtensions,
+              private couchdb : CouchdbService) {
+
+    this.user = new UserData()
   }
 
   ngOnInit() :void { }
 
-  signUp(): void
+  /*signUp(): void
   {
   this.fbservice.registerUser({
      email : this.user.email,
-     password : this.user.password
+     password : this.password
    }).then(result => {
     //this.user.email = JSON.stringify(result);
     const toast = new Toasty("Registration Succesfull");
@@ -45,6 +52,10 @@ export class RegisterComponent implements OnInit {
     }
   );
    
+  }*/
+
+  signUp(): void{
+    this.couchdb.setUserData(this.user);
   }
    
 }
