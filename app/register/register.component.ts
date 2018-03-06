@@ -7,6 +7,7 @@ import { Toasty } from 'nativescript-toasty';
 import {RouterExtensions} from "nativescript-angular/router";
 
 import { CouchdbService } from "../services/couchdb.service"
+import {QrcodeService} from "../services/qrcode.service"
 
 @Component({
   moduleId: module.id,
@@ -18,10 +19,11 @@ export class RegisterComponent implements OnInit {
   
   public user: UserData;
   public password : string;
+  public userData : UserData;
 
   constructor(private fbservice : FireBaseDbService ,
               private routerExtensions: RouterExtensions,
-              private couchdb : CouchdbService) {
+              private couchdb : CouchdbService, private QRcode : QrcodeService) {
 
     this.user = new UserData()
   }
@@ -31,15 +33,18 @@ export class RegisterComponent implements OnInit {
 
 // uncomment when using restration feature
 
-  /*signUp(): void
+ /* signUp(): void
   {
   this.fbservice.registerUser({
      email : this.user.email,
      password : this.password
    }).then(result => {
     //this.user.email = JSON.stringify(result);
+    
+   this.createUser();
     const toast = new Toasty("Registration Succesfull");
     toast.show();
+    this.signUpC();
     this.routerExtensions.navigate(["/profile"], {
         transition: {
             name: "fade",
@@ -58,7 +63,22 @@ export class RegisterComponent implements OnInit {
   }*/
 
   signUp(): void{
-    this.couchdb.setUserData(this.user);
+    this.createUser();
+    this.couchdb.setUserData(this.userData);
+  }
+
+  createUser() : any
+  {
+     this.userData= {
+       name : this.user.name,
+       password : this.user.password,
+       profile_pic : "",
+       email : this.user.email,
+       isOnline : true,
+       firebaseID : "",
+       QRcode : this.QRcode.generateBarcode(this.user.email),
+       messages : ""
+     }
   }
    
 }

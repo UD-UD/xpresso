@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Couchbase } from "nativescript-couchbase";
 import { UserData } from "../model/UserData";
+import { Toasty } from 'nativescript-toasty';
 
 @Injectable()
 export class CouchdbService {
@@ -31,7 +32,8 @@ export class CouchdbService {
      this.initCouch();
      let rows = this.database.executeQuery("getUserData");
      for(let i = 0; i < rows.length; i++) {
-        console.log(rows[i]);
+       console.log(i)
+        console.log(JSON.stringify(rows[i]));
      }
      return rows;
   }
@@ -39,6 +41,9 @@ export class CouchdbService {
   setUserData(userdata : UserData){
     if(this.getCouchData().length == 0) // new user
         console.log(this.createUserDataEntry(userdata));
-    this.getCouchData();
+        else
+        {
+         this.getCouchData();
+        }
   }
 }
