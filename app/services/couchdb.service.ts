@@ -8,6 +8,7 @@ export class CouchdbService {
 
   database : Couchbase ;
   DATABASE_NAME = "user-database";
+  userData : UserData;
   constructor() { }
 
   private initCouch() : void {
@@ -45,5 +46,18 @@ export class CouchdbService {
         {
          this.getCouchData();
         }
+  }
+
+  checkLoggedInStatus() : boolean{ 
+    this.initCouch();
+    let rows = this.getCouchData();
+    if(rows.length != 0){
+      if(rows[0].userdata){
+        return rows[0].userdata.isLoggedIn ? true : false;
+      }
+    }
+    else 
+      return false;
+      
   }
 }
