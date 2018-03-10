@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FireBaseDbService} from '../services/fire-base-db.service'
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
   moduleId: module.id,
@@ -9,7 +10,7 @@ import {FireBaseDbService} from '../services/fire-base-db.service'
 })
 export class ProfileComponent implements OnInit {
 public logs : any;
-  constructor(private FireDbService : FireBaseDbService) { 
+  constructor(private FireDbService : FireBaseDbService , private fonticon: TNSFontIconService) { 
     
   }
 getLogs(): void
