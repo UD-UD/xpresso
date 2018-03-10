@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { BarcodeScanner } from 'nativescript-barcodescanner';
 import { FireBaseDbService } from "./services/fire-base-db.service"
 import { QrcodeService } from "./services/qrcode.service" 
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 
 @NgModule({
     bootstrap: [
@@ -15,7 +16,8 @@ import { QrcodeService } from "./services/qrcode.service"
     imports: [
         NativeScriptModule,
         AppRoutingModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        NativeScriptUISideDrawerModule
     ],
     declarations: [
         AppComponent

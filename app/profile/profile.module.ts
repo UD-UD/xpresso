@@ -4,6 +4,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 import { ProfileRoutingModule } from "../profile/profile.routing";
 import { ProfileComponent } from "../profile/profile.component";
+import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 
 @NgModule({
     bootstrap: [
@@ -13,6 +14,7 @@ import { ProfileComponent } from "../profile/profile.component";
         NativeScriptCommonModule,
         NativeScriptFormsModule,
         ProfileRoutingModule,
+        NativeScriptUISideDrawerModule
        
     ],
     declarations: [

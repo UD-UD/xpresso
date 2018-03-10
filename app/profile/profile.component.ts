@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,  ViewChild, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import {FireBaseDbService} from '../services/fire-base-db.service'
+import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import { Page } from "ui/page";
+
 
 @Component({
   moduleId: module.id,
@@ -9,7 +13,12 @@ import {FireBaseDbService} from '../services/fire-base-db.service'
 })
 export class ProfileComponent implements OnInit {
 public logs : any;
-  constructor(private FireDbService : FireBaseDbService) { 
+@ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+private drawer: RadSideDrawer;
+  constructor(private FireDbService : FireBaseDbService, private _changeDetectionRef: ChangeDetectorRef) { 
+   // super()
+
+	
     
   }
 getLogs(): void
@@ -17,7 +26,21 @@ getLogs(): void
   this.logs = this.FireDbService.logs;
 
 }
+ngAfterViewInit() {
+  this.drawer = this.drawerComponent.sideDrawer;
+  this._changeDetectionRef.detectChanges();
+}
+  ngOnInit() { 
 
-  ngOnInit() { }
+
+  }
+  
+  public openDrawer() {
+    this.drawer.showDrawer();
+}
+public onCloseDrawerTap() {
+  this.drawer.closeDrawer();
+}
+  
 
 }
