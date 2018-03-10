@@ -1,6 +1,6 @@
-<ActionBar class="action-bar" >
-  <Label class="action-bar-title" text="Dashboard"></Label>
-  <Button text="OPEN DRAWER" (tap)="openDrawer()" class="drawerContentButton"></Button>
+<ActionBar class="action-bar dashboard">
+ 
+  <Label class="mdi drawer-icon" [text]="'mdi-favorite' | fonticon" (tap)="openDrawer()"></Label>
 </ActionBar>
 <RadSideDrawer tkExampleTitle tkToggleNavButton>
   <StackLayout tkDrawerContent class="sideStackLayout">

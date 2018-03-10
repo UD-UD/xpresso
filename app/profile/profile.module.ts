@@ -18,7 +18,7 @@ import { TNSFontIconModule } from 'nativescript-ng2-fonticon'
         NativeScriptUISideDrawerModule,
        
         TNSFontIconModule.forRoot({
-            'mdi': '../material-design-icons.css'})
+            'mdi': 'material-design-icons.css'})
     
     ],
     declarations: [
