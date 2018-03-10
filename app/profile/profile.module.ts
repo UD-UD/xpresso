@@ -5,6 +5,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { ProfileRoutingModule } from "../profile/profile.routing";
 import { ProfileComponent } from "../profile/profile.component";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon'
 
 @NgModule({
     bootstrap: [
@@ -14,8 +15,11 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
         NativeScriptCommonModule,
         NativeScriptFormsModule,
         ProfileRoutingModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
        
+        TNSFontIconModule.forRoot({
+            'mdi': '../material-design-icons.css'})
+    
     ],
     declarations: [
         ProfileComponent

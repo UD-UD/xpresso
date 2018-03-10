@@ -8,6 +8,8 @@ import { BarcodeScanner } from 'nativescript-barcodescanner';
 import { FireBaseDbService } from "./services/fire-base-db.service"
 import { QrcodeService } from "./services/qrcode.service" 
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
+import { CouchdbService } from "./services/couchdb.service"
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon'
 
 @NgModule({
     bootstrap: [
@@ -17,7 +19,9 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptFormsModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        TNSFontIconModule.forRoot({
+            'mdi': 'material-design-icons.css'})
     ],
     declarations: [
         AppComponent
@@ -28,7 +32,8 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
     providers :[
         FireBaseDbService,
         BarcodeScanner,
-        QrcodeService
+        QrcodeService,
+        CouchdbService
     ]
 })
 export class AppModule { }

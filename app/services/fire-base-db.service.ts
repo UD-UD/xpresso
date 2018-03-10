@@ -8,6 +8,8 @@ const firebaseWebApi = require("nativescript-plugin-firebase/app");
 export class FireBaseDbService {
 
   public logs : any
+  public currUser : any
+  public userId : any
   constructor() {
     this.initfirebase();
   }
@@ -38,16 +40,29 @@ export class FireBaseDbService {
           password: user.password
         }
       })
-      
+
   }
 
-  getCurrentUser(){
-    firebase.getCurrentUser()
+  getCurrentUser() :any {
+    return firebase.getCurrentUser()
     .then(user =>{
       console.log("User uid: " + user.uid)
       return user;
     })
     .catch(error => console.log("Trouble in paradise: " + error));
+  }
+
+  getUserid() : any
+  {
+    return this.getCurrentUser().uid;
+  }
+
+  setUser(user)
+  {
+    var usersRef = firebase.child(this.userId);
+    usersRef.set({
+      user
+    })
   }
 
   logout(){

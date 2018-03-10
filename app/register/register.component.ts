@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TextView } from "ui/text-view";
-import { User } from '../model/user';
+import { UserData } from '../model/UserData';
 import { FireBaseDbService } from '../services/fire-base-db.service';
 import { Toasty } from 'nativescript-toasty';
 
 import {RouterExtensions} from "nativescript-angular/router";
+
+import { CouchdbService } from "../services/couchdb.service"
+import {QrcodeService} from "../services/qrcode.service"
 
 @Component({
   moduleId: module.id,
@@ -13,23 +16,35 @@ import {RouterExtensions} from "nativescript-angular/router";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public user: User;
   
-  constructor(private fbservice : FireBaseDbService ,private routerExtensions: RouterExtensions) {
-    this.user = new User()
+  public user: UserData;
+  public password : string;
+  public userData : UserData;
+
+  constructor(private fbservice : FireBaseDbService ,
+              private routerExtensions: RouterExtensions,
+              private couchdb : CouchdbService, private QRcode : QrcodeService) {
+
+    this.user = new UserData()
   }
 
   ngOnInit() :void { }
 
-  signUp(): void
+
+// uncomment when using restration feature
+
+ /* signUp(): void
   {
   this.fbservice.registerUser({
      email : this.user.email,
-     password : this.user.password
+     password : this.password
    }).then(result => {
     //this.user.email = JSON.stringify(result);
+    
+   this.createUser();
     const toast = new Toasty("Registration Succesfull");
     toast.show();
+    this.signUpC();
     this.routerExtensions.navigate(["/profile"], {
         transition: {
             name: "fade",
@@ -45,6 +60,25 @@ export class RegisterComponent implements OnInit {
     }
   );
    
+  }*/
+
+  signUp(): void{
+    this.createUser();
+    this.couchdb.setUserData(this.userData);
+  }
+
+  createUser() : any
+  {
+     this.userData= {
+       name : this.user.name,
+       profile_pic : "",
+       email : this.user.email,
+       isOnline : true,
+       firebaseID : "",
+       QRcode : this.QRcode.generateBarcode(this.user.email),
+       messages : "",
+       isLoggedIn : true
+     }
   }
    
 }

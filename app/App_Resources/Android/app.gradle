@@ -9,8 +9,13 @@ android {
   defaultConfig {  
     generatedDensities = []
     applicationId = "org.nativescript.xpresso"  
+    multiDexEnabled true
   }  
   aaptOptions {  
     additionalParameters "--no-version-vectors"  
   }  
+  dexOptions {
+        jumboMode true
+    }
 } 
+

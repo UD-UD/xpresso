@@ -4,6 +4,7 @@ import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedraw
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import { Page } from "ui/page";
 
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 
 @Component({
   moduleId: module.id,
@@ -15,11 +16,10 @@ export class ProfileComponent implements OnInit {
 public logs : any;
 @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
 private drawer: RadSideDrawer;
-  constructor(private FireDbService : FireBaseDbService, private _changeDetectionRef: ChangeDetectorRef) { 
+  constructor(private FireDbService : FireBaseDbService, private _changeDetectionRef: ChangeDetectorRef, private fonticon: TNSFontIconService) { 
    // super()
 
 	
-    
   }
 getLogs(): void
 {
