@@ -71,13 +71,13 @@ export class RegisterComponent implements OnInit {
   {
      this.userData= {
        name : this.user.name,
-       password : this.user.password,
        profile_pic : "",
        email : this.user.email,
        isOnline : true,
        firebaseID : "",
        QRcode : this.QRcode.generateBarcode(this.user.email),
-       messages : ""
+       messages : "",
+       isLoggedIn : true
      }
   }
    
