@@ -4,7 +4,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 import { ProfileRoutingModule } from "../profile/profile.routing";
 import { ProfileComponent } from "../profile/profile.component";
-import { TNSFontIconModule } from 'nativescript-ng2-fonticon'
+import { TNSFontIconModule } from 'nativescript-ng2-fonticon';
 
 @NgModule({
     bootstrap: [
@@ -15,7 +15,7 @@ import { TNSFontIconModule } from 'nativescript-ng2-fonticon'
         NativeScriptFormsModule,
         ProfileRoutingModule,
         TNSFontIconModule.forRoot({
-            'mdi': '../material-design-icons.css'})
+            'mdi': '/profile/material-design-icons.css'})
     
     ],
     declarations: [
