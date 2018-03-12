@@ -41,6 +41,10 @@ ngAfterViewInit() {
 public onCloseDrawerTap() {
   this.drawer.closeDrawer();
 }
+public toggleDrawer()
+{
+  this.drawer.toggleDrawerState();
+}
   
 
 }

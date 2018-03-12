@@ -1,11 +1,18 @@
 <ActionBar class="action-bar dashboard">
  
-  <Label class="mdi drawer-icon" [text]="'mdi-favorite' | fonticon" (tap)="openDrawer()"></Label>
+  <Label class="mdi drawer-icon" [text]="'mdi-list' | fonticon" (tap)="toggleDrawer()"></Label>
 </ActionBar>
 <RadSideDrawer tkExampleTitle tkToggleNavButton>
   <StackLayout tkDrawerContent class="sideStackLayout">
-      <StackLayout class="sideTitleStackLayout">
-          <Label text="Navigation Menu"></Label>
+    <StackLayout class="sidedrawer-header">
+        <!-- Set src attribute to the logo of the app -->
+        <Image
+            class="sidedrawer-header-image">
+        </Image>
+        <Label
+            class="sidedrawer-header-brand"
+            text="NS NG Drawer Starter">
+        </Label>
       </StackLayout>
       <StackLayout class="sideStackLayout">
           <Label text="Primary" class="sideLabel sideLightGrayLabel"></Label>
