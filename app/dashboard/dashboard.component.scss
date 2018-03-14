@@ -2,6 +2,27 @@
     background-color: #3489db;
     color: #fff;
 }
+
+.recent-card-image{
+    height: 150;
+    width: 150;
+    margin-top: 10;
+    margin-right: 10;
+    margin-left: 10; 
+    margin-bottom:0; 
+}
+.sender-image{
+    height: 40;
+    width: 40;
+    horizontal-align: center;
+}
+
+.main-card-like{
+    height: 40;
+    width: 40;
+    horizontal-align: center;
+}
+
 .info{
-    background: #e3e;
+    text-align: center;
 }

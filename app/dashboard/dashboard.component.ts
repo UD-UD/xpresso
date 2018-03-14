@@ -5,7 +5,7 @@ const card = require("nativescript-cardview").CardView ;
 import { Page } from "ui/page";
 import { Label } from "ui/label";
 import { StackLayout } from "ui/layouts/stack-layout";
-
+import { GridLayout } from  "ui/layouts/grid-layout";
 @Component({
   moduleId: module.id,
   selector: 'app-dashboard',
@@ -15,7 +15,7 @@ import { StackLayout } from "ui/layouts/stack-layout";
 export class DashboardComponent implements OnInit {
 
   public item : any;
-  @ViewChild("contentStack") contentStackRef: ElementRef;
+  @ViewChild("contentStack") contentStackRef: ElementRef; 
 
   constructor(private page : Page) { 
   }
@@ -25,6 +25,10 @@ export class DashboardComponent implements OnInit {
     let stack = <StackLayout>this.contentStackRef.nativeElement;
     let lable = new Label();
     lable.text = "Ujjal";
-    stack.addChild(lable);
+
+    let card1 = elementRegistryModule.getViewClass("CardView");
+    let card2 = new card1();
+    let gl = new GridLayout();
+    gl.addChild(lable);
   }
 }
