@@ -15,15 +15,7 @@
         </Label>
       </StackLayout>
       <StackLayout class="sideStackLayout">
-          <Label text="Primary" class="sideLabel sideLightGrayLabel"></Label>
-          <Label text="Social" class="sideLabel"></Label>
-          <Label text="Promotions" class="sideLabel"></Label>
-          <Label text="Labels" class="sideLabel sideLightGrayLabel"></Label>
-          <Label text="Important" class="sideLabel"></Label>
-          <Label text="Starred" class="sideLabel"></Label>
-          <Label text="Sent Mail" class="sideLabel"></Label>
-          <Label text="Drafts" class="sideLabel"></Label>
-          
+          <Image [src] = "imgsrc"></Image>
       </StackLayout>
       <AbsoluteLayout width="250" height="100" verticalAlignment="bottom">
         <Label class="mdi logout-icon" [text]="'mdi-lock-outline' | fonticon" left="10" top="10" width="90" height="90" (tap)="getCouchuser()"></Label>

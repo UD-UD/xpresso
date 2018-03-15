@@ -32,12 +32,7 @@ export class CouchdbService {
   getCouchData() {
      this.initCouch();
      let rows = this.database.executeQuery("getUserData");
-     for(let i = 0; i < rows.length; i++) {
-       console.log(i)
-        console.log(JSON.stringify(rows[i]));
-     }
-     console.log(JSON.stringify(rows[0]));
-     return rows[0];
+     return rows;
   }
 
   setUserData(userdata : UserData){
