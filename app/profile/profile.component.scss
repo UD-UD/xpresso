@@ -37,13 +37,13 @@ button {
       border-radius: 50%;
       margin: 5px;
       background-color: #fff;
-      horizontal-align : left;
+      horizontal-align : center;
   }
   .sidedrawer-header .sidedrawer-header-brand {
     font-size: 18;
     color: #fff;
     margin: 5px;
-    horizontal-align : left;
+    horizontal-align : center;
     vertical-align : bottom;
   }
   
@@ -62,5 +62,13 @@ button {
     color: crimson;
     horizontal-align : left;
     font-size: 45px;
+}
+.logout-icon
+{
+    font-size: 30px;
+}
+.edit-icon
+{
+    font-size: 30px;   
 }
 /* << sidedrawer-getting-started-angular-css */

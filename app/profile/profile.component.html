@@ -7,7 +7,7 @@
     <StackLayout class="sidedrawer-header">
         <!-- Set src attribute to the logo of the app -->
         <Image
-            class="sidedrawer-header-image">
+            class="sidedrawer-header-image" src = "~/image/me.jpg">
         </Image>
         <Label
             class="sidedrawer-header-brand"
@@ -23,12 +23,18 @@
           <Label text="Starred" class="sideLabel"></Label>
           <Label text="Sent Mail" class="sideLabel"></Label>
           <Label text="Drafts" class="sideLabel"></Label>
+          
       </StackLayout>
+      <AbsoluteLayout width="250" height="100" verticalAlignment="bottom">
+        <Label class="mdi logout-icon" [text]="'mdi-lock-outline' | fonticon" left="10" top="10" width="90" height="90" (tap)="getCouchuser()"></Label>
+        <Label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" left="210" top="10" width="90" height="90"></Label>
+      </AbsoluteLayout>
       <Label (tap)="onCloseDrawerTap()"></Label>
   </StackLayout>
   <StackLayout tkMainContent>
       <!-- <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label> -->
         <label text = "pinky and motuu"></label>
   </StackLayout>
+ 
 </RadSideDrawer>
 

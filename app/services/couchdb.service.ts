@@ -36,7 +36,8 @@ export class CouchdbService {
        console.log(i)
         console.log(JSON.stringify(rows[i]));
      }
-     return rows;
+     console.log(JSON.stringify(rows[0]));
+     return rows[0];
   }
 
   setUserData(userdata : UserData){
