@@ -3,8 +3,8 @@
   <Label class="mdi drawer-icon" [text]="'mdi-list' | fonticon" (tap)="toggleDrawer()"></Label>
 </ActionBar>
 <RadSideDrawer tkExampleTitle tkToggleNavButton>
-  <StackLayout tkDrawerContent class="sideStackLayout">
-    <StackLayout class="sidedrawer-header">
+  <GridLayout rows="auto, auto, *" cols="*" tkDrawerContent class="sideStackLayout">
+    <StackLayout row= "0" class="sidedrawer-header">
         <!-- Set src attribute to the logo of the app -->
         <Image
             class="sidedrawer-header-image" src = "~/image/me.jpg">
@@ -14,15 +14,17 @@
             text="NS NG Drawer Starter">
         </Label>
       </StackLayout>
-      <StackLayout class="sideStackLayout">
+      <StackLayout row = "1" class="sideStackLayout">
           <Image [src] = "imgsrc"></Image>
       </StackLayout>
-      <AbsoluteLayout width="250" height="100" verticalAlignment="bottom">
-        <Label class="mdi logout-icon" [text]="'mdi-lock-outline' | fonticon" left="10" top="10" width="90" height="90" (tap)="getCouchuser()"></Label>
-        <Label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" left="210" top="10" width="90" height="90"></Label>
-      </AbsoluteLayout>
+      <StackLayout row ="2" orientation="horizontal" >
+        <GridLayout rows ="*" cols="*,*" class = "icons">
+        <Label class="mdi logout-icon" [text]="'mdi-lock-outline' | fonticon" col="0" ></Label>
+        <Label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" col="1"></Label>
+      </GridLayout>
+      </StackLayout>
       <Label (tap)="onCloseDrawerTap()"></Label>
-  </StackLayout>
+  </GridLayout>
   <StackLayout tkMainContent>
       <!-- <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label> -->
         <label text = "pinky and motuu"></label>
