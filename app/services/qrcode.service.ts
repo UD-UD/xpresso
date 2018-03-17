@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BarcodeScanner } from 'nativescript-barcodescanner';
 import * as camera from "nativescript-camera";
-const ZXing = require('nativescript-zxing')
+const ZXing = require('nativescript-zxing');
+
+import * as imageSource from "tns-core-modules/image-source";
 
 @Injectable()
 export class QrcodeService {
@@ -38,6 +40,16 @@ userData = {
       height: 100, 
       width: 100, 
       format: ZXing.QR_CODE});
-      return img;
+      return this.getbase64image(img);
+  }
+
+  getbase64image(img){
+    var image = imageSource.fromNativeSource(img);
+    let base64String = image.toBase64String("png");
+    return base64String;
+  }
+
+  getImageFrombase64(base64){
+    return imageSource.fromBase64(base64);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit ,Input} from '@angular/core';
 import { FireBaseDbService } from '../services/fire-base-db.service';
 import { Toasty } from 'nativescript-toasty';
-import { User } from '../model/user';
+import { UserData } from '../model/UserData';
 import {RouterExtensions} from "nativescript-angular/router";
 
 @Component({
@@ -12,20 +12,21 @@ import {RouterExtensions} from "nativescript-angular/router";
 })
 export class LoginComponent implements OnInit {
   
-  public user: User;
+  public user: UserData;
+  public password : string;
 
   constructor(private fireBaseDbService : FireBaseDbService,private routerExtensions: RouterExtensions) { 
-    this.user = new User()
+    this.user = new UserData()
   }
 
   ngOnInit() {
    }
 
   login(){
-    console.log(this.user.email +" "+ this.user.password)
+    console.log(this.user.email +" "+ this.password)
     this.fireBaseDbService.loginUser({
       email : this.user.email,
-      password : this.user.password
+      password : this.password
     })
     .then(result => {
       const toast = new Toasty("login Succesfull");

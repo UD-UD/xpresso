@@ -17,4 +17,8 @@ android {
 }
 dependencies {
   compile 'com.android.support:multidex:1.0.1'
+ // dexOptions {
+//        jumboMode true
+//    }
 } 
+
