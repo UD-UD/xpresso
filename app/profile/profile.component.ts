@@ -6,6 +6,8 @@ import { Page } from "ui/page";
 import { TNSFontIconService } from 'nativescript-ng2-fonticon';
 import {CouchdbService} from '../services/couchdb.service'
 import {QrcodeService} from "../services/qrcode.service"
+import * as imagepicker from "nativescript-imagepicker";
+import * as imageSource from "tns-core-modules/image-source";
 
 @Component({
   moduleId: module.id,
@@ -17,9 +19,12 @@ export class ProfileComponent implements OnInit {
   public logs : any;
   public rows : any;
   public userdata : any;
-  
+  public items = [];
   public imgsrc : any;
-  
+  public userName : any;
+  public profilePic : any;
+
+
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   private drawer: RadSideDrawer;
   constructor(private FireDbService : FireBaseDbService, private QRcode : QrcodeService,private _changeDetectionRef: ChangeDetectorRef, private fonticon: TNSFontIconService, private couchbase : CouchdbService) { 
@@ -42,6 +47,8 @@ export class ProfileComponent implements OnInit {
     console.log(JSON.stringify(this.rows))
     this.userdata =this.rows[0].userdata;
     this.imgsrc = this.QRcode.getImageFrombase64(this.userdata.QRcode);
+    this.userName = this.userdata.name;
+    this.profilePic = this.QRcode.getImageFrombase64(this.userdata.profile_pic);
     
   }
   getCouchuser()
@@ -63,6 +70,8 @@ export class ProfileComponent implements OnInit {
   {
     this.drawer.toggleDrawerState();
   }
+
+
   
   
 }
