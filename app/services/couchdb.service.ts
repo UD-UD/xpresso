@@ -9,6 +9,7 @@ export class CouchdbService {
   database : Couchbase ;
   DATABASE_NAME = "user-database";
   userData : UserData;
+  DocId : Number
   constructor() { }
 
   private initCouch() : void {
@@ -37,11 +38,19 @@ export class CouchdbService {
 
   setUserData(userdata : UserData){
     if(this.getCouchData().length == 0) // new user
+    {
         console.log(this.createUserDataEntry(userdata));
+      //  this.DocId = this.createUserDataEntry(userdata)
+    }
         else
         {
          this.getCouchData();
         }
+  }
+
+  updateUserData(docId, userdata : UserData)
+  {
+    this.database.updateDocument(docId ,  {"userdata" : userdata});
   }
 
   checkLoggedInStatus() : boolean{ 

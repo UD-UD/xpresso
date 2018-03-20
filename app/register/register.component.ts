@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit {
   public user: UserData;
   public password : string;
   public userData : UserData;
+  public DocId : Number;
 
   constructor(private fbservice : FireBaseDbService ,
               private routerExtensions: RouterExtensions,
@@ -64,7 +65,7 @@ export class RegisterComponent implements OnInit {
 
   signUp(): void{
     this.createUser();
-    this.couchdb.setUserData(this.userData);
+   this.couchdb.setUserData(this.userData);
   }
 
   createUser() : any
@@ -78,6 +79,7 @@ export class RegisterComponent implements OnInit {
        QRcode : this.QRcode.generateBarcode(this.user.email),
        messages : "",
        isLoggedIn : true
+     //  DocId : this.DocId
      }
   }
    

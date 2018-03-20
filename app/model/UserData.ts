@@ -9,6 +9,7 @@ export class UserData
     public QRcode : any;
     public messages :  any;
     public isLoggedIn : boolean;
+ //   public DocId : Number;
 
     // constructor(userdata){
     //     this.name = userdata.name
