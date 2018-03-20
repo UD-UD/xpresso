@@ -9,6 +9,7 @@ export class CouchdbService {
   database : Couchbase ;
   DATABASE_NAME = "user-database";
   userData : UserData;
+  rows : any;
   constructor() { }
 
   private initCouch() : void {
@@ -30,13 +31,16 @@ export class CouchdbService {
   }
   
   getCouchData() {
-     this.initCouch();
-     let rows = this.database.executeQuery("getUserData");
-     for(let i = 0; i < rows.length; i++) {
-       console.log(i)
-        console.log(JSON.stringify(rows[i]));
-     }
-     return rows;
+    if(this.rows == undefined){
+      this.initCouch();
+      let rows = this.database.executeQuery("getUserData");
+      for(let i = 0; i < rows.length; i++) {
+        console.log(i)
+          console.log(JSON.stringify(rows[i]));
+      }
+      this.rows = rows;
+    }
+    return this.rows;
   }
 
   setUserData(userdata : UserData){
@@ -59,5 +63,12 @@ export class CouchdbService {
     else 
       return false;
       
+  }
+
+  getMessages(){
+    if(this.rows == undefined){
+      this.getCouchData();
+    }
+    return this.rows[0].userdata.messages;
   }
 }

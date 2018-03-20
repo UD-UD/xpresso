@@ -8,6 +8,7 @@ import { BarcodeScanner } from 'nativescript-barcodescanner';
 import { FireBaseDbService } from "./services/fire-base-db.service"
 import { QrcodeService } from "./services/qrcode.service" 
 import { CouchdbService } from "./services/couchdb.service"
+import {DashboardService} from "./services/dashboard.service"
 
 @NgModule({
     bootstrap: [
@@ -28,7 +29,8 @@ import { CouchdbService } from "./services/couchdb.service"
         FireBaseDbService,
         BarcodeScanner,
         QrcodeService,
-        CouchdbService
+        CouchdbService,
+        DashboardService
     ]
 })
 export class AppModule { }

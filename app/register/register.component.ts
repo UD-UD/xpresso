@@ -9,6 +9,10 @@ import {RouterExtensions} from "nativescript-angular/router";
 import { CouchdbService } from "../services/couchdb.service"
 import {QrcodeService} from "../services/qrcode.service"
 
+import { data } from "./sampleuser"
+
+import { Utils } from "../utils/Utils"
+
 @Component({
   moduleId: module.id,
   selector: 'register',
@@ -69,16 +73,33 @@ export class RegisterComponent implements OnInit {
 
   createUser() : any
   {
-     this.userData= {
-       name : this.user.name,
-       profile_pic : "",
-       email : this.user.email,
-       isOnline : true,
-       firebaseID : "",
-       QRcode : this.QRcode.generateBarcode(this.user.email),
-       messages : "",
-       isLoggedIn : true
-     }
+    //  this.userData= {
+    //    name : this.user.name,
+    //    profile_pic : "",
+    //    email : this.user.email,
+    //    isOnline : true,
+    //    firebaseID : "",
+    //    QRcode : this.QRcode.generateBarcode(this.user.email),
+    //    messages : "",
+    //    isLoggedIn : true
+    //  }
+
+    //create demo user
+    data.userdata.messages.pinky.img = Utils.generateBase64String(Utils.readImage());
+    data.userdata.messages.ujjal2.img = Utils.generateBase64String(Utils.readImage());
+    
+    this.userData = {
+      name : data.userdata.name,
+      profile_pic : Utils.generateBase64String(Utils.readImage()),
+      email : data.userdata.email,
+      isOnline : true,
+      firebaseID : "ujjal1",
+      QRcode : this.QRcode.generateBarcode(data.userdata.email),
+      messages : data.userdata.messages,
+      isLoggedIn : true
+    }
+
+   
   }
    
 }
