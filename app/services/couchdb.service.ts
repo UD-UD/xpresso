@@ -31,7 +31,7 @@ export class CouchdbService {
   }
   
   getCouchData() {
-    if(this.rows == undefined){
+    if(this.rows == undefined || this.rows.length == 0){
       this.initCouch();
       let rows = this.database.executeQuery("getUserData");
       for(let i = 0; i < rows.length; i++) {
@@ -66,7 +66,7 @@ export class CouchdbService {
   }
 
   getMessages(){
-    if(this.rows == undefined){
+    if(this.rows == undefined || this.rows.length == 0){
       this.getCouchData();
     }
     return this.rows[0].userdata.messages;

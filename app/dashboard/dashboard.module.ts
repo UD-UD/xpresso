@@ -4,6 +4,7 @@ import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { DashboardRoutingModule } from ".//dashboard-routing.module";
 import { DashboardComponent } from "./dashboard.component";
 
+
 @NgModule({
     imports: [
         NativeScriptCommonModule,

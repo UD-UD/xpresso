@@ -9,8 +9,7 @@ export class Utils {
         });
     }
 
-    static readImage(){
-        var path = "~/icons/img-9.png";
+    static readImage(path="~/icons/img-9.png"){
         return imageSource.fromFile(path);
     }
 
