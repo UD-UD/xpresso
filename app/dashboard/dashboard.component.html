@@ -43,18 +43,17 @@
             </GridView>
         </GridLayout> -->
 
-        <GridLayout #contentStack class="page">
-            <GridView [items]="gridCards" colWidth="50%" rowHeight="100">
-              <ng-template let-item="card" let-odd="odd">
+        <GridLayout #contentStack class="page" rows="*">
+            <GridView row="1" [items]="gridCards" colWidth="50%" rowHeight="130">
+              <ng-template let-item="card">
                 <Card:CardView class="blueCard" margin="5" elevation="20">
                     <StackLayout margin="0">
-                        <image [src]="card.mainImage"  class="small-card-msg" stretch="aspectFill"/>
-                        <image [src]="card.senderImage"  class="small-card-sender" stretch="aspectFill"/>
+                        <image [src]="mainImage"  class="small-card-msg" stretch="aspectFill"/>
+                        <image [src]="senderImage"  class="small-card-sender" stretch="aspectFill"/>
                     </StackLayout>
                 </Card:CardView>
               </ng-template>
             </GridView>
-          </GridLayout>
-        
+        </GridLayout>
     </StackLayout>
 </ScrollView>

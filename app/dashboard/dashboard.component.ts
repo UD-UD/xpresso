@@ -10,6 +10,8 @@ import {DashboardService} from "../services/dashboard.service" ;
 import { EventData, Observable } from "data/observable";
 import { ObservableArray } from "data/observable-array";
 import { GridItemEventData } from "nativescript-grid-view";
+import { CardData } from '../model/CardData'
+import { GridViewModule } from "nativescript-grid-view/angular";
 
 @Component({
   moduleId: module.id,
@@ -23,20 +25,16 @@ export class DashboardComponent implements OnInit {
   public mainImage ;
   public senderImage ;
   public senderMessage ;
-  //public gridCards ;
-
-  public grid : Observable;
-
-  public gridCards : any;
-
+  public dashboardData;
+  public gridCards : CardData[] ;
+  
   @ViewChild("contentStack") contentStackRef: ElementRef; 
 
   constructor(private page : Page,private dashboardService : DashboardService) { 
   }
 
   ngOnInit() { 
-    //let stack = <StackLayout>this.contentStackRef.nativeElement;
-    
+    // let stack = <StackLayout>this.contentStackRef.nativeElement;
     // let lable = new Label()ß
     // lable.text = "Ujjal";
     // let card1 = elementRegistryModule.getViewClass("CardView");
@@ -46,19 +44,13 @@ export class DashboardComponent implements OnInit {
 
     // this.dashboardService.init();
 
-    let gridlayout = <GridLayout>this.contentStackRef.nativeElement
-    this.gridCards = new ObservableArray();
-    let dashboardData = this.dashboardService.getDashBoardData();
-    this.mainImage = dashboardData.mainCard.mainImage;
-    this.senderImage = dashboardData.mainCard.senderImage;
-    this.senderMessage = dashboardData.mainCard.senderMessage;
-
-    this.gridCards.push(dashboardData.gridCard);
-
-    this.grid = new Observable();
-    this.grid.set("gridCards", this.gridCards);
-
-    this.page.bindingContext = this.grid;
+    // let gridlayout = <GridLayout>this.contentStackRef.nativeElement
+    // this.gridCards = new ObservableArray();
+    this.dashboardData = this.dashboardService.getDashBoardData();
+    this.mainImage = this.dashboardData.mainCard.mainImage;
+    this.senderImage = this.dashboardData.mainCard.senderImage;
+    this.senderMessage = this.dashboardData.mainCard.senderMessage;
+    this.gridCards =  this.dashboardData.gridCard;
     
   }
 }
