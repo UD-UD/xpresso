@@ -31,9 +31,12 @@ export class RegisterComponent implements OnInit {
               private _changeDetectionRef: ChangeDetectorRef) {
 
     this.user = new UserData()
+    this.items[0] = imageSource.fromFile("~/image/person.jpg")
   }
 
-  ngOnInit() :void { }
+  ngOnInit() :void {
+    
+   }
 
 
 // uncomment when using restration feature
