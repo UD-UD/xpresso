@@ -7,6 +7,9 @@ import { Utils } from "../utils/Utils"
 export class DashboardService {
 
   modelData : any
+  mainImage ;
+  gridImahe;
+  sender ; 
   constructor( private couchdb : CouchdbService) { 
     this.modelData ={};
     this.modelData.mainCard = {};
@@ -24,20 +27,27 @@ export class DashboardService {
   }
 
   getDashBoardData(){
+
+    if(this.mainImage == undefined){
+      this.mainImage = Utils.readImage("~/icons/img-1.png");
+      this.sender = Utils.readImage("~/icons/img-2.png");
+      this.gridImahe = Utils.readImage("~/icons/img-9.png");
+    }
+
     let messages = this.couchdb.getMessages();
     let mainCard = new CardData();
-    mainCard.mainImage = Utils.readImage("~/icons/img-1.png");
+    mainCard.mainImage = this.mainImage;
     mainCard.senderID = "ujjal1";
-    mainCard.senderImage = Utils.readImage("~/icons/img-2.png");
+    mainCard.senderImage = this.gridImahe;
     mainCard.senderMessage = "Hello.. Hungry?..";
 
     let gridCards : CardData[] = [];
 
     for(let i=0;i<10;i++){
       let temp = new CardData();
-      temp.mainImage = Utils.readImage("~/icons/img-1.png");
+      temp.mainImage = this.mainImage ;
       temp.senderID = "ujjal1";
-      temp.senderImage = Utils.readImage("~/icons/img-9.png");
+      temp.senderImage = this.sender;
       temp.senderMessage = "Hello.. Hungry?..";
       gridCards.push(temp);
     }

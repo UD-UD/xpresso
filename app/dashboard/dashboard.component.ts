@@ -34,7 +34,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() { 
-    // let stack = <StackLayout>this.contentStackRef.nativeElement;
+    let stack = <GridLayout>this.contentStackRef.nativeElement;
+    stack.backgroundImage = "";
     // let lable = new Label()ß
     // lable.text = "Ujjal";
     // let card1 = elementRegistryModule.getViewClass("CardView");
@@ -47,10 +48,12 @@ export class DashboardComponent implements OnInit {
     // let gridlayout = <GridLayout>this.contentStackRef.nativeElement
     // this.gridCards = new ObservableArray();
     this.dashboardData = this.dashboardService.getDashBoardData();
-    this.mainImage = this.dashboardData.mainCard.mainImage;
-    this.senderImage = this.dashboardData.mainCard.senderImage;
-    this.senderMessage = this.dashboardData.mainCard.senderMessage;
-    this.gridCards =  this.dashboardData.gridCard;
+    // this.mainImage = this.dashboardData.mainCard.mainImage;
+    // this.senderImage = this.dashboardData.mainCard.senderImage;
+    // this.senderMessage = this.dashboardData.mainCard.senderMessage;
+    // this.gridCards =  this.dashboardData.gridCard;
+
+    stack.background = this.dashboardData.mainCard.mainImage;
     
   }
 }
