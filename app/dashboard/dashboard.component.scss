@@ -47,7 +47,84 @@
     margin-bottom: 5;
 }
 
-GridLayout{
-    margin-right: 10;
-    margin-left: 10;
+/* Side Drawer*/
+/* >> sidedrawer-getting-started-angular-css */
+button {
+    font-size: 15;
+    horizontal-align: center;
 }
+
+.drawerContentText {
+    font-size: 13;
+    padding: 10;
+}
+
+.drawerContentButton {
+    margin: 10;
+    horizontal-align: left;
+}
+
+.sideStackLayout {
+    background-color: gray;
+}
+
+.sideTitleStackLayout {
+   
+    text-align: center;
+    
+}
+.sidedrawer-header {
+    padding-top: 1;
+    padding-bottom: 1;
+    background-color : #333333;
+  }
+ 
+  .sidedrawer-header-image{
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 5px;
+      background-color: #fff;
+      horizontal-align : center;
+  }
+  .sidedrawer-header .sidedrawer-header-brand {
+    font-size: 18;
+    color:  #fff;
+    margin: 5px;
+    horizontal-align : center;
+    vertical-align : bottom;
+  }
+  
+
+.sideLabel {
+    padding: 10;
+}
+
+.sideLightGrayLabel {
+    background-color: lightgray;
+}
+.dashboard{
+    text-align: left
+}
+.drawer-icon{
+    color: crimson;
+    horizontal-align : left;
+    font-size: 45px;
+}
+.logout-icon
+{
+    font-size: 30px;
+    
+}
+.edit-icon
+{
+    font-size: 30px;   
+    horizontal-align : right;
+}
+.icons
+{
+    vertical-align: bottom;
+    margin: 10;
+    padding: 10;
+}
+/* << sidedrawer-getting-started-angular-css */

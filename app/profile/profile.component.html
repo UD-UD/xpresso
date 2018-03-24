@@ -1,42 +1,35 @@
 <ActionBar class="action-bar dashboard">
- 
-  <Label class="mdi drawer-icon" [text]="'mdi-list' | fonticon" (tap)="toggleDrawer()"></Label>
+    <Label class="mdi drawer-icon" [text]="'mdi-list' | fonticon" (tap)="toggleDrawer()"></Label>
 </ActionBar>
 <RadSideDrawer tkExampleTitle tkToggleNavButton>
-  <GridLayout rows="auto, auto, *" cols="*" tkDrawerContent class="sideStackLayout">
-    <StackLayout row= "0" class="sidedrawer-header">
-        <!-- Set src attribute to the logo of the app -->
-        <Image class="sidedrawer-header-image" [src]="profilePic"></Image>
-       <label class="sidedrawer-header-brand" [text] = "userName"></label>
-    </StackLayout>
-      <StackLayout row = "1" class="sideStackLayout">
-          <Image [src] = "imgsrc"></Image>
-      </StackLayout>
-      <StackLayout row ="2" orientation="horizontal" >
-        <GridLayout rows ="*" cols="*,*" class = "icons">
-        <Label class="mdi logout-icon" [text]="'mdi-lock-outline' | fonticon" col="0" ></Label>
-        <button class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" col="1" [nsRouterLink]="['/edit-profile']"></button>>
-      </GridLayout>
-      </StackLayout>
-    
-  </GridLayout>
-  <StackLayout tkMainContent>
-      <!-- <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label> -->
+    <GridLayout rows="auto, auto, *" cols="*" tkDrawerContent class="sideStackLayout">
+        <StackLayout row= "0" class="sidedrawer-header">
+            <!-- Set src attribute to the logo of the app -->
+            <Image class="sidedrawer-header-image" [src]="profilePic"></Image>
+            <label class="sidedrawer-header-brand" [text] = "userName"></label>
+        </StackLayout>
+        <StackLayout row = "1" class="sideStackLayout">
+            <Image [src] = "imgsrc"></Image>
+        </StackLayout>
+        <StackLayout row ="2" orientation="horizontal">
+            <GridLayout rows ="*" cols="*,*" class = "icons">
+                <Label class="mdi logout-icon" [text]="'mdi-lock-outline' | fonticon" col="0"></Label>
+                <button class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" col="1" [nsRouterLink]="['/edit-profile']"></button>>
+            </GridLayout>
+        </StackLayout>
+    </GridLayout>
+    <StackLayout tkMainContent>
+        <!-- <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label> -->
         <label text = "pinky and motuu"></label>
         <GridLayout rows="*, auto, auto">
-          <ScrollView>
-              <StackLayout>
-                  <GridLayout height="94" columns="94, *" rows="*, *" *ngFor="let item of items">
-                      
-                      <Label col="1" [text]="item.uri"></Label>
-                      <Label col="1" row="1" [text]="item.fileUri"></Label>
-                  </GridLayout>
-              </StackLayout>
-          </ScrollView>
-          
-         
-      </GridLayout>
-  </StackLayout>
- 
+            <ScrollView>
+                <StackLayout>
+                    <GridLayout height="94" columns="94, *" rows="*, *" *ngFor="let item of items">
+                        <Label col="1" [text]="item.uri"></Label>
+                        <Label col="1" row="1" [text]="item.fileUri"></Label>
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+        </GridLayout>
+    </StackLayout>
 </RadSideDrawer>
-

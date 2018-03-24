@@ -83,7 +83,7 @@ signUpF():void{
   signUpC(): void{
     this.createUser();
     this.couchdb.setUserData(this.userData);
-    this.routerExtensions.navigate(["/profile"], {
+    this.routerExtensions.navigate(["/dashboard"], {
       transition: {
           name: "fade",
           duration: 2000,

@@ -1,4 +1,58 @@
-<ScrollView>
+<ActionBar class="action-bar dashboard">
+    <Label class="mdi drawer-icon" [text]="'mdi-list' | fonticon" (tap)="toggleDrawer()"></Label>
+</ActionBar>
+<!-- Side drawer -->
+<RadSideDrawer tkExampleTitle tkToggleNavButton>
+    <GridLayout rows="auto, auto, *" cols="*" tkDrawerContent class="sideStackLayout">
+        <StackLayout row= "0" class="sidedrawer-header">
+            <!-- Set src attribute to the logo of the app -->
+            <Image class="sidedrawer-header-image" [src]="profilePic"></Image>
+            <label class="sidedrawer-header-brand" [text] = "userName"></label>
+        </StackLayout>
+        <StackLayout row = "1" class="sideStackLayout">
+            <Image [src] = "imgsrc"></Image>
+        </StackLayout>
+        <StackLayout row ="2" orientation="horizontal">
+            <GridLayout rows ="*" cols="*,*" class = "icons">
+                <Label class="mdi logout-icon" [text]="'mdi-lock-outline' | fonticon" col="0"></Label>
+                <button class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" col="1" [nsRouterLink]="['/edit-profile']"></button>>
+            </GridLayout>
+        </StackLayout>
+    </GridLayout>
+    <StackLayout tkMainContent>
+        <ScrollView>
+            <StackLayout  orientation="vertical">
+                
+                <Card:CardView class="recent-card" radius="10" loaded="cardLoaded" elevation="20" margin="10" id="main-card">
+                    <grid-layout rows="200, auto, auto" columns="auto, auto, *">
+                        <image [src]="mainImage" class="recent-card-image" stretch="aspectFill" colSpan="3" row="0" />
+                        <grid-layout rows="*" columns="*, 3*, *" row="1" colSpan="3">
+                            <image [src]="senderImage" class="sender-image" stretch="aspectFill" col="0"></image>
+                            <label [text]="senderMessage" class="info h3 p-15" textWrap="false" col="1"></label>
+                            <image src="~/icons/img-8.png" class="main-card-like" stretch="aspectFill" col="2"></image>
+                        </grid-layout>
+                    </grid-layout>
+                </Card:CardView>
+        
+                <GridLayout #contentStack class="page">
+                    <GridView [items]="gridCards" colWidth="50%" rowHeight="150">
+                      <ng-template let-item="card" let-odd="odd">
+                        <Card:CardView class="blueCard" margin="5" elevation="20">
+                            <StackLayout margin="0">
+                                <image [src]="mainImage"  class="small-card-msg" stretch="aspectFill"/>
+                                <image [src]="senderImage"  class="small-card-sender" stretch="aspectFill"/>
+                            </StackLayout>
+                        </Card:CardView>
+                      </ng-template>
+                    </GridView>
+                  </GridLayout>
+                
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</RadSideDrawer>
+<!-- Drawer End -->
+<!-- <ScrollView>
     <StackLayout  orientation="vertical">
         
         <Card:CardView class="recent-card" radius="10" loaded="cardLoaded" elevation="20" margin="10" id="main-card">
@@ -11,41 +65,10 @@
                 </grid-layout>
             </grid-layout>
         </Card:CardView>
-        
-        <!-- <grid-layout rows="*,*,*" columns="*, *" margin="5">
-            <Card:CardView class="blueCard" margin="5" row="0" col="0" elevation="20">
-                <StackLayout margin="0">
-                    <image src="~/icons/img-3.png"  class="small-card-msg" stretch="aspectFill"/>
-                    <image src="~/icons/img-9.png"  class="small-card-sender" stretch="aspectFill"/>
-                </StackLayout>
-            </Card:CardView> 
-            <Card:CardView class="blueCard" margin="5" row="0" col="1" elevation="20">
-                <StackLayout margin="0">
-                        <image src="~/icons/img-4.png"  class="small-card-msg" stretch="aspectFill"/>
-                        <image src="~/icons/img-9.png"  class="small-card-sender" stretch="aspectFill"/>
-                </StackLayout>
-            </Card:CardView>
-            <Card:CardView class="blueCard" margin="5" row="1" col="1" elevation="20">
-                <StackLayout margin="0">
-                        <image src="~/icons/img-5.png"  class="small-card-msg" stretch="aspectFill"/>
-                        <image src="~/icons/img-9.png"  class="small-card-sender" stretch="aspectFill"/>
-                </StackLayout>
-            </Card:CardView>
-        </grid-layout> -->
 
-        <!-- <GridLayout class="page">
-            <GridView [items]="items" colWidth="50%" rowHeight="100">
-              <ng-template let-item="item" let-odd="odd">
-                <StackLayout margin="10" [nsRouterLink]="['/item', item.id]" borderColor="blue" borderWidth="2" borderRadius="5" verticalAlignment="stretch" class="list-group-item" [class.odd]="odd">
-                  <Label verticalAlignment="center" [text]="item.name" class="list-group-item-text" textWrap="true"></Label>
-                </StackLayout>
-              </ng-template>
-            </GridView>
-        </GridLayout> -->
-
-        <GridLayout #contentStack class="page" rows="*">
-            <GridView row="1" [items]="gridCards" colWidth="50%" rowHeight="130">
-              <ng-template let-item="card">
+        <GridLayout #contentStack class="page">
+            <GridView [items]="gridCards" colWidth="50%" rowHeight="150">
+              <ng-template let-item="card" let-odd="odd">
                 <Card:CardView class="blueCard" margin="5" elevation="20">
                     <StackLayout margin="0">
                         <image [src]="mainImage"  class="small-card-msg" stretch="aspectFill"/>
@@ -54,6 +77,7 @@
                 </Card:CardView>
               </ng-template>
             </GridView>
-        </GridLayout>
+          </GridLayout>
+        
     </StackLayout>
-</ScrollView>
+</ScrollView> -->
