@@ -1,0 +1,29 @@
+<ScrollView>
+    <StackLayout  orientation="vertical">
+        
+        <Card:CardView class="recent-card" radius="10" loaded="cardLoaded" elevation="20" margin="10" id="main-card">
+            <grid-layout rows="200, auto, auto" columns="auto, auto, *">
+                <image [src]="mainImage" class="recent-card-image" stretch="aspectFill" colSpan="3" row="0" />
+                <grid-layout rows="*" columns="*, 3*, *" row="1" colSpan="3">
+                    <image [src]="senderImage" class="sender-image" stretch="aspectFill" col="0"></image>
+                    <label [text]="senderMessage" class="info h3 p-15" textWrap="false" col="1"></label>
+                    <image src="~/icons/img-8.png" class="main-card-like" stretch="aspectFill" col="2"></image>
+                </grid-layout>
+            </grid-layout>
+        </Card:CardView>
+
+        <GridLayout #contentStack class="page">
+            <GridView [items]="gridCards" colWidth="50%" rowHeight="100">
+              <ng-template let-item="card" let-odd="odd">
+                <Card:CardView class="blueCard" margin="5" elevation="20">
+                    <StackLayout margin="0">
+                        <image [src]="mainImage"  class="small-card-msg" stretch="aspectFill"/>
+                        <image [src]="senderImage"  class="small-card-sender" stretch="aspectFill"/>
+                    </StackLayout>
+                </Card:CardView>
+              </ng-template>
+            </GridView>
+          </GridLayout>
+        
+    </StackLayout>
+</ScrollView>

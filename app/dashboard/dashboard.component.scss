@@ -1,0 +1,48 @@
+.cardStyle {
+    background-color: #3489db;
+    color: #fff;
+}
+
+.recent-card-image{
+    height: 150;
+    width: 150;
+    margin-top: 10;
+    margin-right: 10;
+    margin-left: 10; 
+    margin-bottom:0; 
+}
+.sender-image{
+    height: 40;
+    width: 40;
+    horizontal-align: center;
+}
+
+.main-card-like{
+    height: 40;
+    width: 40;
+    horizontal-align: center;
+}
+
+.info{
+    text-align: center;
+}
+
+.small-card-msg {
+    height: 100;
+    width: 100;
+    horizontal-align: center;
+    vertical-align: center;
+    margin-top: 8;
+    margin-right: 8;
+    margin-bottom: 0;
+    margin-left: 8;
+}
+
+.small-card-sender{
+    height: 20;
+    width: 20;
+    horizontal-align: right;
+    border-radius: 50%;
+    margin-right: 5;
+    margin-bottom: 5;
+}
