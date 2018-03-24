@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     .then(result => {
       const toast = new Toasty("login Succesfull");
       toast.show();
-      this.routerExtensions.navigate(["/profile"], {
+      this.routerExtensions.navigate(["/dashboard"], {
         transition: {
             name: "fade",
             duration: 2000,

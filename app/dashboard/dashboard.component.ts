@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild,AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import * as elementRegistryModule from 'nativescript-angular/element-registry';
 elementRegistryModule.registerElement("CardView", () => require("nativescript-cardview").CardView);
 const card = require("nativescript-cardview").CardView ;
@@ -10,6 +10,15 @@ import {DashboardService} from "../services/dashboard.service" ;
 import { EventData, Observable } from "data/observable";
 import { ObservableArray } from "data/observable-array";
 import { GridItemEventData } from "nativescript-grid-view";
+import {FireBaseDbService} from '../services/fire-base-db.service'
+import { RadSideDrawerComponent, SideDrawerType } from "nativescript-ui-sidedrawer/angular";
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
+import {CouchdbService} from '../services/couchdb.service'
+import {QrcodeService} from "../services/qrcode.service"
+import * as imagepicker from "nativescript-imagepicker";
+import * as imageSource from "tns-core-modules/image-source";
+
 
 @Component({
   moduleId: module.id,
@@ -23,42 +32,74 @@ export class DashboardComponent implements OnInit {
   public mainImage ;
   public senderImage ;
   public senderMessage ;
-  //public gridCards ;
-
-  public grid : Observable;
-
   public gridCards : any;
+  public logs : any;
+  public rows : any;
+  public userdata : any;
+  public items = [];
+  public imgsrc : any;
+  public userName : any;
+  public profilePic : any;
+  private drawer: RadSideDrawer;
 
   @ViewChild("contentStack") contentStackRef: ElementRef; 
-
-  constructor(private page : Page,private dashboardService : DashboardService) { 
+  @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+  
+  constructor(private page : Page,
+              private dashboardService : DashboardService,
+              private FireDbService : FireBaseDbService, 
+              private QRcode : QrcodeService,
+              private _changeDetectionRef: ChangeDetectorRef,
+              private fonticon: TNSFontIconService, 
+              private couchbase : CouchdbService) { 
   }
 
   ngOnInit() { 
     //let stack = <StackLayout>this.contentStackRef.nativeElement;
-    
-    // let lable = new Label()ß
-    // lable.text = "Ujjal";
-    // let card1 = elementRegistryModule.getViewClass("CardView");
-    // let card2 = new card1();
-    // let gl = new GridLayout();
-    // gl.addChild(lable);
-
-    // this.dashboardService.init();
-
     let gridlayout = <GridLayout>this.contentStackRef.nativeElement
     this.gridCards = new ObservableArray();
     let dashboardData = this.dashboardService.getDashBoardData();
     this.mainImage = dashboardData.mainCard.mainImage;
     this.senderImage = dashboardData.mainCard.senderImage;
     this.senderMessage = dashboardData.mainCard.senderMessage;
-
     this.gridCards.push(dashboardData.gridCard);
+    this.rows = this.couchbase.getCouchData();
+    console.log(JSON.stringify(this.rows))
+    this.userdata =this.rows[0].userdata;
+    this.imgsrc = this.QRcode.getImageFrombase64(this.userdata.QRcode);
+    this.userName = this.userdata.name;
+    this.profilePic = this.QRcode.getImageFrombase64(this.userdata.profile_pic);
+  }
 
-    this.grid = new Observable();
-    this.grid.set("gridCards", this.gridCards);
-
-    this.page.bindingContext = this.grid;
+  getLogs(): void
+  {
+    this.logs = this.FireDbService.logs;
     
   }
+
+  ngAfterViewInit() {
+    this.drawer = this.drawerComponent.sideDrawer;
+    this._changeDetectionRef.detectChanges();
+  }
+
+  getCouchuser()
+  {
+    this.rows = this.couchbase.getCouchData();
+    console.log(JSON.stringify(this.rows))
+    this.userdata =this.rows[0].userdata;
+    //this.imgsrc = this.QRcode.generateBarcode(this.userdata.email);
+    console.log(JSON.stringify(this.imgsrc))
+
+  }
+  public openDrawer() {
+    this.drawer.showDrawer();
+  }
+  public onCloseDrawerTap() {
+    this.drawer.closeDrawer();
+  }
+  public toggleDrawer()
+  {
+    this.drawer.toggleDrawerState();
+  }
+
 }
