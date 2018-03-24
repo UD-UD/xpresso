@@ -25,7 +25,12 @@ export class FireBaseDbService {
     .then(result => console.log(JSON.stringify(result)))
     .catch(error =>console.log(JSON.stringify(error)));
   }
-
+getOnlineStatus(userId)
+{
+  firebase.getValue('/users/'+userId+'/isOnline')
+      .then(result => console.log(JSON.stringify(result.value)))
+      .catch(error => console.log("Error: " + error));
+}
   registerUser(user) : any {
     console.log(JSON.stringify(user));
     return firebase.createUser(user);
@@ -40,6 +45,7 @@ export class FireBaseDbService {
           password: user.password
         }
       })
+      
 
   }
 
@@ -59,12 +65,10 @@ export class FireBaseDbService {
 
   setUser(user)
   {
-    var usersRef = firebase.child(this.userId);
-    usersRef.set({
-      user
-    })
+  //  var userRef = firebase.object('/'+user.firebaseID).set(user)
+  firebase.update('/users/'+ user.firebaseID, user)
   }
-
+  
   logout(){
     firebaseWebApi.auth().signOut()
     .then(() => console.log("Logout OK"))

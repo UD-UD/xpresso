@@ -11,6 +11,10 @@ import {QrcodeService} from "../services/qrcode.service"
 import * as imagepicker from "nativescript-imagepicker";
 import * as imageSource from "tns-core-modules/image-source";
 
+import { data } from "./sampleuser"
+
+import { Utils } from "../utils/Utils"
+
 @Component({
   moduleId: module.id,
   selector: 'register',
@@ -42,7 +46,7 @@ export class RegisterComponent implements OnInit {
 
 // uncomment when using restration feature
 
- /* signUp(): void
+ signUp(): void
   {
   this.fbservice.registerUser({
      email : this.user.email,
@@ -53,6 +57,7 @@ export class RegisterComponent implements OnInit {
    this.createUser();
     const toast = new Toasty("Registration Succesfull");
     toast.show();
+    this.fbservice.setUser(this.userData);
     this.signUpC();
     this.routerExtensions.navigate(["/profile"], {
         transition: {
@@ -69,9 +74,13 @@ export class RegisterComponent implements OnInit {
     }
   );
    
-  }*/
-
-  signUp(): void{
+  }
+signUpF():void{
+  this.createUser();
+  this.fbservice.getOnlineStatus(this.userData.firebaseID)
+  this.fbservice.setUser(this.userData);
+}
+  signUpC(): void{
     this.createUser();
     this.couchdb.setUserData(this.userData);
     this.routerExtensions.navigate(["/profile"], {
@@ -127,17 +136,33 @@ export class RegisterComponent implements OnInit {
 
   createUser() : any
   {
-     this.userData= {
-       name : this.user.name,
-       profile_pic : this.profilePic,
-       email : this.user.email,
-       isOnline : true,
-       firebaseID : "",
-       QRcode : this.QRcode.generateBarcode(this.user.email),
-       messages : "",
-       isLoggedIn : true
-     //  DocId : this.DocId
-     }
+    //  this.userData= {
+    //    name : this.user.name,
+    //    profile_pic : "",
+    //    email : this.user.email,
+    //    isOnline : true,
+    //    firebaseID : "",
+    //    QRcode : this.QRcode.generateBarcode(this.user.email),
+    //    messages : "",
+    //    isLoggedIn : true
+    //  }
+
+    //create demo user
+    data.userdata.messages.pinky.img = Utils.generateBase64String(Utils.readImage());
+    data.userdata.messages.ujjal2.img = Utils.generateBase64String(Utils.readImage());
+    
+    this.userData = {
+      name : this.user.name,
+      profile_pic : this.profilePic,
+      email : this.user.email,
+      isOnline : true,
+      firebaseID : "vVg10raLuXfsxx4LNfPFHSrLboL2",
+      QRcode : this.QRcode.generateBarcode(data.userdata.email),
+      messages : data.userdata.messages,
+      isLoggedIn : true
+    }
+
+   
   }
    
 }

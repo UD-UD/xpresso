@@ -10,6 +10,7 @@ export class CouchdbService {
   DATABASE_NAME = "user-database";
   userData : UserData;
   DocId : Number
+  rows : any;
   constructor() { }
 
   private initCouch() : void {
@@ -31,9 +32,16 @@ export class CouchdbService {
   }
   
   getCouchData() {
-     this.initCouch();
-     let rows = this.database.executeQuery("getUserData");
-     return rows;
+    if(this.rows == undefined || this.rows.length == 0){
+      this.initCouch();
+      let rows = this.database.executeQuery("getUserData");
+      for(let i = 0; i < rows.length; i++) {
+        console.log(i)
+          console.log(JSON.stringify(rows[i]));
+      }
+      this.rows = rows;
+    }
+    return this.rows;
   }
 
   setUserData(userdata : UserData){
@@ -64,5 +72,12 @@ export class CouchdbService {
     else 
       return false;
       
+  }
+
+  getMessages(){
+    if(this.rows == undefined || this.rows.length == 0){
+      this.getCouchData();
+    }
+    return this.rows[0].userdata.messages;
   }
 }

@@ -15,7 +15,7 @@ export class AppComponent {
         //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
         //Add 'implements OnInit' to the class.
         if(this.couchService.checkLoggedInStatus()){
-            this.routerExtensions.navigate(["/profile"], {
+            this.routerExtensions.navigate(["/home"], {
                 transition: {
                     name: "fade",
                     duration: 500,
