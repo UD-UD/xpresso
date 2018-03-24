@@ -6,14 +6,9 @@
   <GridLayout rows="auto, auto, *" cols="*" tkDrawerContent class="sideStackLayout">
     <StackLayout row= "0" class="sidedrawer-header">
         <!-- Set src attribute to the logo of the app -->
-        <Image
-            class="sidedrawer-header-image" src = "~/image/me.jpg">
-        </Image>
-        <Label
-            class="sidedrawer-header-brand"
-            text="NS NG Drawer Starter">
-        </Label>
-      </StackLayout>
+        <Image class="sidedrawer-header-image" [src]="profilePic"></Image>
+       <label class="sidedrawer-header-brand" [text] = "userName"></label>
+    </StackLayout>
       <StackLayout row = "1" class="sideStackLayout">
           <Image [src] = "imgsrc"></Image>
       </StackLayout>
@@ -23,11 +18,24 @@
         <button class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" col="1" [nsRouterLink]="['/edit-profile']"></button>>
       </GridLayout>
       </StackLayout>
-      <Label (tap)="onCloseDrawerTap()"></Label>
+    
   </GridLayout>
   <StackLayout tkMainContent>
       <!-- <Label [text]="mainContentText" textWrap="true" class="drawerContentText"></Label> -->
         <label text = "pinky and motuu"></label>
+        <GridLayout rows="*, auto, auto">
+          <ScrollView>
+              <StackLayout>
+                  <GridLayout height="94" columns="94, *" rows="*, *" *ngFor="let item of items">
+                      
+                      <Label col="1" [text]="item.uri"></Label>
+                      <Label col="1" row="1" [text]="item.fileUri"></Label>
+                  </GridLayout>
+              </StackLayout>
+          </ScrollView>
+          
+         
+      </GridLayout>
   </StackLayout>
  
 </RadSideDrawer>

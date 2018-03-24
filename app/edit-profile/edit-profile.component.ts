@@ -1,7 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { UserData } from '../model/UserData';
 import { CouchdbService } from "../services/couchdb.service"
 import {RouterExtensions} from "nativescript-angular/router";
+import { QrcodeService } from '../services/qrcode.service';
+import { TNSFontIconService } from 'nativescript-ng2-fonticon';
+import { StackLayout } from "ui/layouts/stack-layout";
 
 @Component({
   moduleId: module.id,
@@ -15,9 +18,11 @@ export class EditProfileComponent implements OnInit {
      public userdata : any;
      public docId : any;
      public userData : UserData;
+     public profilePic : any;
+     @ViewChild("profilePic") contentStackRef: ElementRef; 
 
   constructor(private routerExtensions: RouterExtensions,
-    private couchdb : CouchdbService) {
+    private couchdb : CouchdbService, private QRcode : QrcodeService, private fonticon: TNSFontIconService) {
 
       this.user = new UserData()
       this.rows = this.couchdb.getCouchData();
@@ -39,8 +44,7 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() { 
     this.rows = this.couchdb.getCouchData();
     console.log(JSON.stringify(this.rows))
-   
-    
+    this.profilePic = this.QRcode.getImageFrombase64(this.userdata.profile_pic);
   }
 
   update()

@@ -9,12 +9,16 @@
   
      <Label text="Email"></Label>
      <TextField required [(ngModel)]="user.email" class="input input-border" ></TextField>
-  
-      <Label text="Password"></Label>
-      <TextField required [(ngModel)]="password" class="input input-border" secure="true" ></TextField>
-  
-      <Label text="Phone Number"></Label>
-      <TextField required [(ngModel)]="user.phno" class="input input-border"></TextField>
+     <!-- <GridLayout columns="*, 50" rows="*" width="210" height="210" >
+      <Image class= "edit-image" row="0" col="0" [src] = "profilePic" >  </Image>   
+        <label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon"></label> 
+
+  </GridLayout> -->
+  <grid-layout rows="220, auto" columns="*, *, *" id="cardReport" style="background-image: url('~/image/person.jpg') ; background-repeat: no-repeat ;background-position: center; background-size: contain">
+      <!-- <image [src] = "profilePic" colSpan="3" row="0"></image> -->
+      <label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" textWrap="true" row="0" col="1"
+             horizontalAlignment="right"></label>
+  </grid-layout>
   </stackLayout>
   
   <Button text="update" (tap)="update()"></Button>

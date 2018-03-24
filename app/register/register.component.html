@@ -15,6 +15,8 @@
 
     <Label text="Phone Number"></Label>
     <TextField required [(ngModel)]="user.phno" class="input input-border"></TextField>
+    <Image class="profile-image" [src]="items[0]"></Image>
+    <Button text="Pick Single" (tap)="onSelectSingleTap()" horizontalAlignment="center"></Button>
 </stackLayout>
 
 <Button text="Sign up" (tap)="signUp()"></Button>
