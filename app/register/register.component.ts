@@ -81,7 +81,7 @@ export class RegisterComponent implements OnInit {
   this.createUser();
  
   this.fbservice.setUser(this.userData);
- this.fbservice.getData('/users/'+this.userData.firebaseID) 
+ this.fbservice.getData('/users/'+this.userData.firebaseID+'/profile_pic') 
  .then(result => {//console.log(JSON.stringify(result.value))
   this.isOnline = JSON.stringify(result.value)
  // console.log(this.isOnline);

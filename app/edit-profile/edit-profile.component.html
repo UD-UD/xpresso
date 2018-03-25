@@ -14,11 +14,21 @@
         <label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon"></label> 
 
   </GridLayout> -->
-  <grid-layout rows="220, auto" columns="*, *, *" id="cardReport" style="background-image: url('~/image/person.jpg') ; background-repeat: no-repeat ;background-position: center; background-size: contain">
-      <!-- <image [src] = "profilePic" colSpan="3" row="0"></image> -->
+  <!-- <grid-layout rows="220, auto" columns="*, *, *" id="cardReport" >
+      <image [src] = "profilePic" colSpan="3" row="0"></image>
       <label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" textWrap="true" row="0" col="1"
              horizontalAlignment="right"></label>
-  </grid-layout>
+  </grid-layout> -->
+  
+  <StackLayout horizontalAlignment="center">
+      <AbsoluteLayout>
+      <image class = "edit-image" [src] = "profilePic"></image>
+    <StackLayout>
+      <label class="mdi edit-icon" [text]="'mdi-mode-edit' | fonticon" ></label>
+            </StackLayout>
+            </AbsoluteLayout>
+            </StackLayout>    
+
   </stackLayout>
   
   <Button text="update" (tap)="update()"></Button>

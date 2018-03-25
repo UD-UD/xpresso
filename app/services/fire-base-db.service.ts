@@ -22,7 +22,7 @@ export class FireBaseDbService {
   }
 
   getData(ref : string): any{
-    firebase.getValue(ref)
+  return  firebase.getValue(ref)
      }
 
 
@@ -44,6 +44,15 @@ export class FireBaseDbService {
 
   }
 
+addFriend(friendId , friend, user)
+  {
+    firebase.update('/users/'+ user+'/messages/'+friendId, 
+  
+   friend
+  
+  )
+
+  }
   getCurrentUser() :any {
     return firebase.getCurrentUser()
     .then(user =>{
@@ -63,17 +72,7 @@ export class FireBaseDbService {
   //  var userRef = firebase.object('/'+user.firebaseID).set(user)
   firebase.update('/users/'+ user.firebaseID, user)
   }
-  addFriend(friendId , friend, user)
-  {
-    firebase.update('/users/'+ user.firebaseID+'/messages/'+friendId, 
-  {
-    chats : {},
-    img : friend.profilepic,
-    isOnline : friend.isOnline
-  }
-  )
-
-  }
+  
   logout(){
     firebaseWebApi.auth().signOut()
     .then(() => console.log("Logout OK"))
