@@ -7,7 +7,6 @@ import { Label } from "ui/label";
 import { StackLayout } from "ui/layouts/stack-layout";
 import { GridLayout } from  "ui/layouts/grid-layout";
 import {DashboardService} from "../services/dashboard.service" ;
-import { EventData, Observable } from "data/observable";
 import { ObservableArray } from "data/observable-array";
 import { GridItemEventData } from "nativescript-grid-view";
 import {FireBaseDbService} from '../services/fire-base-db.service'
@@ -18,7 +17,7 @@ import {CouchdbService} from '../services/couchdb.service'
 import {QrcodeService} from "../services/qrcode.service"
 import * as imagepicker from "nativescript-imagepicker";
 import * as imageSource from "tns-core-modules/image-source";
-
+import { Observable, fromObject, fromObjectRecursive, PropertyChangeData,EventData, WrappedValue } from "tns-core-modules/data/observable";
 
 @Component({
   moduleId: module.id,
@@ -41,7 +40,7 @@ export class DashboardComponent implements OnInit {
   public userName : any;
   public profilePic : any;
   private drawer: RadSideDrawer;
-
+  tracker : Observable;
   @ViewChild("contentStack") contentStackRef: ElementRef; 
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
   
@@ -55,20 +54,20 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() { 
-    //let stack = <StackLayout>this.contentStackRef.nativeElement;
-    let gridlayout = <GridLayout>this.contentStackRef.nativeElement
-    this.gridCards = new ObservableArray();
+    this.rows = this.couchbase.getCouchData();
+    this.userdata =this.rows[0].userdata;
+    this.imgsrc = this.QRcode.getImageFrombase64(this.userdata.QRcode);
+    this.userName = this.userdata.name;
+    this.profilePic = this.QRcode.getImageFrombase64(this.userdata.profile_pic);
+    this.updateModel();  
+  }
+
+  updateModel():void{
     let dashboardData = this.dashboardService.getDashBoardData();
     this.mainImage = dashboardData.mainCard.mainImage;
     this.senderImage = dashboardData.mainCard.senderImage;
     this.senderMessage = dashboardData.mainCard.senderMessage;
     this.gridCards.push(dashboardData.gridCard);
-    this.rows = this.couchbase.getCouchData();
-    console.log(JSON.stringify(this.rows))
-    this.userdata =this.rows[0].userdata;
-    this.imgsrc = this.QRcode.getImageFrombase64(this.userdata.QRcode);
-    this.userName = this.userdata.name;
-    this.profilePic = this.QRcode.getImageFrombase64(this.userdata.profile_pic);
   }
 
   getLogs(): void
@@ -80,7 +79,15 @@ export class DashboardComponent implements OnInit {
   ngAfterViewInit() {
     this.drawer = this.drawerComponent.sideDrawer;
     this._changeDetectionRef.detectChanges();
+    this.tracker = this.dashboardService.getTracker();
+
+    this.tracker.addEventListener(Observable.propertyChangeEvent, (pcd: PropertyChangeData) =>  {
+      console.log("change detected");
+      this.updateModel();  
+    });
   }
+
+  
 
   getCouchuser()
   {
@@ -102,4 +109,7 @@ export class DashboardComponent implements OnInit {
     this.drawer.toggleDrawerState();
   }
 
+  addData(){
+    this.dashboardService.addData();
+  }
 }
