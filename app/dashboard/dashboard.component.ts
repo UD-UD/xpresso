@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit {
   public userName : any;
   public profilePic : any;
   private drawer: RadSideDrawer;
+  public friendId : any;
 
   @ViewChild("contentStack") contentStackRef: ElementRef; 
   @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
@@ -101,5 +102,15 @@ export class DashboardComponent implements OnInit {
   {
     this.drawer.toggleDrawerState();
   }
-
+  public AddFriend(): void
+  {
+    this.QRcode.scanBarcode().then((result) => {
+      console.log(JSON.stringify(result));
+      this.friendId = JSON.stringify(result);
+      
+     }, (errorMessage) => {
+       console.log("No scan. " + errorMessage);
+     }
+   );
+  }
 }

@@ -14,18 +14,13 @@ export class QrcodeService {
     this.zingLib = new ZXing();
    }
 
-  scanBarcode() {
-    this.barcodeService.scan({
+  scanBarcode() : any {
+    return this.barcodeService.scan({
       formats :'QR_CODE',
       resultDisplayDuration : 500,
       orientation : 'landscape',
       openSettingsIfPermissionWasPreviouslyDenied : true
-    }).then((result) => {
-       console.log(JSON.stringify(result));
-      }, (errorMessage) => {
-        console.log("No scan. " + errorMessage);
-      }
-    );
+    })
   }
 
 /*
@@ -45,7 +40,7 @@ userData = {
 
   getbase64image(img){
     var image = imageSource.fromNativeSource(img);
-    let base64String = image.toBase64String("png");
+    let base64String = image.toBase64String("png"); 
     return base64String;
   }
 

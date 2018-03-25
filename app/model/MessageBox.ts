@@ -4,5 +4,6 @@ export class MessageBox
 {
     public participants : any[];
     public chats : Message[]
+    
 
 }

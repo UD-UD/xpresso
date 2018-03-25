@@ -20,7 +20,8 @@
         </StackLayout>
     </GridLayout>
     <StackLayout tkMainContent>
-        <ScrollView>
+        <AbsoluteLayout>
+        <ScrollView class ="sv">
             <StackLayout  orientation="vertical">
                 
                 <Card:CardView class="recent-card" radius="10" loaded="cardLoaded" elevation="20" margin="10" id="main-card">
@@ -46,9 +47,14 @@
                       </ng-template>
                     </GridView>
                   </GridLayout>
-                
+            
+
             </StackLayout>
         </ScrollView>
+        <StackLayout class = "sc">
+                <Label class="mdi add-circle" [text]="'mdi-add-circle' | fonticon" (tap)="AddFriend()"></Label>
+        </StackLayout>
+    </AbsoluteLayout>
     </StackLayout>
 </RadSideDrawer>
 <!-- Drawer End -->

@@ -10,6 +10,7 @@ export class FireBaseDbService {
   public logs : any
   public currUser : any
   public userId : any
+  public isOnline : any;
   constructor() {
     this.initfirebase();
   }
@@ -20,17 +21,11 @@ export class FireBaseDbService {
     });
   }
 
-  getData(ref : string){
+  getData(ref : string): any{
     firebase.getValue(ref)
-    .then(result => console.log(JSON.stringify(result)))
-    .catch(error =>console.log(JSON.stringify(error)));
-  }
-getOnlineStatus(userId)
-{
-  firebase.getValue('/users/'+userId+'/isOnline')
-      .then(result => console.log(JSON.stringify(result.value)))
-      .catch(error => console.log("Error: " + error));
-}
+     }
+
+
   registerUser(user) : any {
     console.log(JSON.stringify(user));
     return firebase.createUser(user);
@@ -68,7 +63,17 @@ getOnlineStatus(userId)
   //  var userRef = firebase.object('/'+user.firebaseID).set(user)
   firebase.update('/users/'+ user.firebaseID, user)
   }
-  
+  addFriend(friendId , friend, user)
+  {
+    firebase.update('/users/'+ user.firebaseID+'/messages/'+friendId, 
+  {
+    chats : {},
+    img : friend.profilepic,
+    isOnline : friend.isOnline
+  }
+  )
+
+  }
   logout(){
     firebaseWebApi.auth().signOut()
     .then(() => console.log("Logout OK"))

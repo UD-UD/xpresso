@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
   public DocId : Number;
   public items = [];
   public profilePic : any;
+  public isOnline : any;
 
   constructor(private fbservice : FireBaseDbService ,
               private routerExtensions: RouterExtensions,
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
      password : this.password
    }).then(result => {
     //this.user.email = JSON.stringify(result);
-    
+    this.user.firebaseID = result.uid;
    this.createUser();
     const toast = new Toasty("Registration Succesfull");
     toast.show();
@@ -63,7 +64,7 @@ export class RegisterComponent implements OnInit {
         transition: {
             name: "fade",
             duration: 2000,
-            curve: "linear"
+            curve: "linear" 
         }
       });
     },
@@ -75,11 +76,30 @@ export class RegisterComponent implements OnInit {
   );
    
   }
-signUpF():void{
+
+ signUpF():void{
   this.createUser();
-  this.fbservice.getOnlineStatus(this.userData.firebaseID)
+ 
   this.fbservice.setUser(this.userData);
-}
+ this.fbservice.getData('/users/'+this.userData.firebaseID) 
+ .then(result => {//console.log(JSON.stringify(result.value))
+  this.isOnline = JSON.stringify(result.value)
+ // console.log(this.isOnline);
+ this.getstatus();
+  
+})
+.catch(error => console.log("Error: " + error));
+
+
+ }
+ getstatus()
+ {
+  console.log(this.isOnline);
+ }
+ addFriend()
+ {
+
+ }
   signUpC(): void{
     this.createUser();
     this.couchdb.setUserData(this.userData);
@@ -157,7 +177,7 @@ signUpF():void{
       email : this.user.email,
       isOnline : true,
       firebaseID : "vVg10raLuXfsxx4LNfPFHSrLboL2",
-      QRcode : this.QRcode.generateBarcode(data.userdata.email),
+      QRcode : this.QRcode.generateBarcode(this.user.firebaseID),
       messages : data.userdata.messages,
       isLoggedIn : true
     }
