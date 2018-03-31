@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
     .then(result => {
       const toast = new Toasty("login Succesfull");
       toast.show();
+     var x = this.fireBaseDbService.getCurrentUser();
+     console.log(JSON.stringify(x))
       this.routerExtensions.navigate(["/dashboard"], {
         transition: {
             name: "fade",

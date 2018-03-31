@@ -1,4 +1,5 @@
 import * as imageSource from "tns-core-modules/image-source";
+import {Toasty} from 'nativescript-toasty'
 
 export class Utils {
 
@@ -19,6 +20,11 @@ export class Utils {
 
     static generateImageFromBase64(base64){
         return imageSource.fromBase64(base64);
+    }
+    public static generateToast(message) : void
+    {
+    const toast = new Toasty(message);
+     toast.show();
     }
 
 }

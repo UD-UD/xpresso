@@ -44,7 +44,10 @@ export class RegisterComponent implements OnInit {
     
    }
 
-
+reg() : void
+{
+  this.fbservice.showUId();
+}
 // uncomment when using restration feature
 
  signUp(): void
@@ -59,7 +62,7 @@ export class RegisterComponent implements OnInit {
     const toast = new Toasty("Registration Succesfull");
     toast.show();
     this.fbservice.setUser(this.userData);
-    this.signUpC();
+    this.signUpC(); 
     this.routerExtensions.navigate(["/profile"], {
         transition: {
             name: "fade",

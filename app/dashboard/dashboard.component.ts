@@ -43,7 +43,6 @@ export class DashboardComponent implements OnInit {
   public userName : any;
   public profilePic : any;
   private drawer: RadSideDrawer;
-  public friendId : any;
   public friendData : MessageBox;
   public image : any;
   public isOnline : any;
@@ -107,57 +106,21 @@ export class DashboardComponent implements OnInit {
   {
     this.drawer.toggleDrawerState();
   }
-  public AddFriendCheck()
-  {
-    this.friendId = "vVg10raLuXfsxx4LNfPFHSrLboL2";
-
-     
-    this.FireDbService.getData('/users/'+this.userId+'/messages/'+this.friendId)
-    .then(result => {//console.log(JSON.stringify(result.value))
-      if(JSON.stringify(result.value)!= null)
-        console.log("friend already added")
-     // console.log(this.isOnline);
-      else
-      this.AddFriend()
-    })
-    .catch(error => console.log("Error: " + error));
-  }
+ 
   public AddFriend(): void
   {
-    // this.QRcode.scanBarcode().then((result) => {
-    //   console.log(JSON.stringify(result));
-      // this.friendId = JSON.stringify(result);
-     this.friendId = "vVg10raLuXfsxx4LNfPFHSrLboL2";
-
+    //  this.QRcode.scanBarcode().then((result) => {
+    //    console.log(JSON.stringify(result));
+    //    let friendId = JSON.stringify(result);
+     let friendId = "vVg10raLuXfsxx4LNfPFHSrLboL2";
+     this.dashboardService.AddFriend(friendId)
      
-      this.FireDbService.getData('/users/'+this.friendId+'/profile_pic')
-      .then(result => {//console.log(JSON.stringify(result.value))
-        this.image = JSON.stringify(result.value)
-       // console.log(this.isOnline);
-        
-      })
-      .catch(error => console.log("Error: " + error));
-      this.FireDbService.getData('/users/'+this.friendId+'/isOnline')
-      .then(result => {//console.log(JSON.stringify(result.value))
-        this.isOnline = JSON.stringify(result.value)
-       // console.log(this.isOnline);
-        
-      })
-      .catch(error => console.log("Error: " + error));
-      this.createFriend()
-      this.FireDbService.addFriend(this.friendId,this.friendData,this.userId)
+    // }, (errorMessage) => {
+    //    console.log("No scan. " + errorMessage);
+    // }
+  // );
+     
       
-  //    }, (errorMessage) => {
-  //      console.log("No scan. " + errorMessage);
-  //    }
-  //  );
   }
-  public createFriend()
-  {
-    this.friendData ={
-       chats : [],
-       img : this.image,
-       isOnline : this.isOnline
-    }
-  }
+
 }
